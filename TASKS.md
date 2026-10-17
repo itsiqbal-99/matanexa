@@ -116,3 +116,15 @@ docs/G26_HYBRID_REPORT.md dan G26_HYBRID_RESULTS.json.
 - [x] Browser desktop/mobile memastikan mode hybrid nyata untuk 3 anchor per viewport, pasangan asli, RTL, label dan pembatasan copy/save/persistensi (2 tes lulus).
 - [x] Lint, typecheck dan build akhir lulus pada perubahan hybrid; laporan final diperbarui, format diperiksa melalui format:check.
 - [ ] Izin publikasi, tinjauan manusia dan qrels independen untuk gate data G4/G5 — masih pending.
+
+## UI — Redesign dan motion (17 Oktober 2026)
+
+- [x] Redesign shell, sidebar, hero, topik, composer, hasil dan dialog dengan palet navy/cobalt/cyan; tanpa dependency baru.
+- [x] Motion halaman, sidebar, dialog, kartu, status typing/search ring/dots/skeleton; teks hadits tetap asli dan tanpa jawaban generatif.
+- [x] Reduced motion dinamis, timer cleanup, cancel, keyboard, focus trap/restore, sidebar inert dan target sentuh mobile diperiksa.
+- [x] Tema terang/gelap serta layout 360–1920px diperiksa; tidak ada overflow horizontal dan composer tetap terlihat.
+- [x] 20 regresi desktop/mobile lulus; 4 pemeriksaan ulang loading/motion dan 2 regresi posisi dialog lulus.
+- [x] 2 tes hybrid pilot nyata lulus: 5376, 6116, 5971 pada desktop/mobile, teks berpasangan, RTL, label dan pembatasan riset tetap berlaku.
+- [x] Lint, typecheck, 26 tes API dan build lulus; web build/typecheck diulang setelah koreksi CSS terakhir.
+- [x] Pemeriksaan format akhir laporan/checklist selesai.
+- **Status:** implementasi UI teruji; laporan `docs/UI_REDESIGN_REPORT.md`. Tidak ada deployment. Redesign ini tidak menyelesaikan hardening G4, izin publikasi atau sign-off G5.

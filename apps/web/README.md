@@ -1,32 +1,51 @@
-# @matanexa/web
+# Matanexa — Quiet Intelligence v1.1
 
-Next.js App Router + React + TypeScript strict + Tailwind CSS (PostCSS).
-G1 menyediakan UI chat yang memanggil NestJS lewat API client terpusat. UI tidak
-melakukan matching pencarian, akses database, Next API routes atau Server Actions.
-Hasil mock adalah simulasi dengan field agama null. Payload lexical tervalidasi
-ditampilkan pada kartu/detail yang sama: nomor+skema, Arab RTL, terjemahan+
-atribusi, provenance, tautan HTTPS aman dan grade hanya beserta penilai/rujukan.
-Tidak ada corpus nyata yang telah disetujui pada audit G2; QA lexical memakai
-fixture respons bertanda SIMULASI, bukan bukti kualitas data hadits.
+Next.js 16 + React 19 + TypeScript strict + Tailwind CSS 4. Redesigned chat-first search workspace with the **Senja** color system, editorial reference results, responsive sidebar, adaptive text reveal, and request-driven loading states.
 
-Dari root: `npm run dev --workspace @matanexa/web` (port 3000), atau
-`npm run dev` untuk kedua aplikasi. Salin `.env.local.example` ke `.env.local`.
-`NEXT_PUBLIC_API_BASE_URL` hanya URL publik NestJS, bukan kredensial.
+## Getting started
 
-`npm run lint --workspace @matanexa/web`, `npm run typecheck --workspace
-@matanexa/web`, dan `npm run build --workspace @matanexa/web` memverifikasi setup.
-`npm run start --workspace @matanexa/web` menjalankan hasil build secara lokal.
-Font sistem dipakai agar build tidak bergantung unduhan font.
+```bash
+npm install
+cp .env.local.example .env.local
+npm run dev
+```
 
-Fitur: contoh pertanyaan, composer auto-resize/Enter/Shift+Enter, loading/batal,
-retry/timeout/empty, filter koleksi di API, dialog detail, salin berlabel simulasi,
-bookmark, riwayat maksimal 20, dark/light, drawer mobile, dan hapus data lokal.
-localStorage memakai key `matanexa.workspace.v1`; data divalidasi sebelum dibaca.
-Setiap query adalah entri riwayat independen, bukan konteks multi-turn.
+Set `NEXT_PUBLIC_API_BASE_URL` in `.env.local` to the public NestJS API URL. Run the NestJS backend separately. This frontend does not perform local matching, access a database, expose Next API routes, or fabricate a generative model response.
 
-Tes UI root: `npm run test:e2e` sesudah kedua server siap. Lihat laporan G1 dan
-screenshot desktop/mobile di `docs/`.
+### Validation
 
-G3 menampilkan permintaan klarifikasi untuk respons lexical dengan
-meta.queryStatus=ambiguous dan mempertahankan ejaan pertanyaan asli.
-Normalisasi, sinonim dan perankingan tetap sepenuhnya di NestJS/PostgreSQL.
+```bash
+npm run test:smoke
+npm run lint
+npm run typecheck
+npm run build
+```
+
+If using the parent monorepo, run the relevant commands with `--workspace @matanexa/web`. The E2E tests mentioned in the original README belong to the parent monorepo and are not included in this frontend-only ZIP.
+
+## Preserved behavior
+
+- `POST /api/v1/search` and all request/response contracts, error/timeout/abort handling, and runtime response validation remain unchanged.
+- Search queries are independent, **not** a generative multi-turn conversation. The summary is factual text composed from API metadata only.
+- Source filters and pagination preserve prior results while the next request is in flight. Older requests cannot overwrite the latest request.
+- Local storage key remains `matanexa.workspace.v1`, with caps of 20 history entries and 100 saved results. Read and write validation restrictions are maintained.
+- Pilot-research data is not permanently stored or copied. Mock records remain explicitly labeled non-verified and contain no invented Arabic text or grades.
+- Arabic text is rendered verbatim, never character-by-character animated.
+
+## Motion implementation
+
+Premium-fluid CSS transitions, native React state coordination, staggered result reveals, accessible reduced-motion behavior, and word-reveal for fresh short summaries. Animation never delays the actual API lifecycle. **No new dependency was introduced**; production installs remain the same as the original package. The originally proposed Motion for React dependency can be considered separately if browser testing demonstrates a need for shared-layout transitions beyond the current CSS architecture.
+
+## Files changed
+
+- `app/globals.css` — visual tokens, design system, responsive layout, motion presets.
+- `features/search/search-workspace.tsx`, `sidebar.tsx`, `composer.tsx`, `search-results.tsx`, `search-activity.tsx`, `result-card.tsx` — redesigned presentation.
+- `features/search/use-workspace.ts` — preserved prior results and fresh-answer reveal trigger.
+- `features/search/use-search-presentation.ts`, `adaptive-text-reveal.tsx` — new transient reveal logic.
+- `components/modal.tsx` — panel variant for details.
+
+## Important
+
+The source package intentionally contains **no** `.env.local`, credentials, build cache, or installed dependencies. Copy `.env.local.example` and supply your own non-secret public API base URL.
+
+See `QA_REPORT.md` for actual verification results and remaining predeployment checks.

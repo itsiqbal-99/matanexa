@@ -17,6 +17,7 @@ export function useWorkspace() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [view, setView] = useState<'search' | 'saved'>('search');
   const [notice, setNotice] = useState('');
+  const [lastReveal, setLastReveal] = useState<{ id: string; key: string } | null>(null);
   const currentRequest = useRef<AbortController | null>(null);
   const sequence = useRef(0);
   useEffect(() => {
@@ -50,8 +51,16 @@ export function useWorkspace() {
   }, [notice]);
   const cancelCurrent = useCallback(() => {
     sequence.current += 1;
-    currentRequest.current?.abort();
-    currentRequest.current = null;
+    if (currentRequest.current) {
+      currentRequest.current.abort();
+      currentRequest.current = null;
+      setData((previous) => ({
+        ...previous,
+        history: previous.history.map((item) =>
+          item.status === 'loading' ? { ...item, status: 'aborted' as const } : item,
+        ),
+      }));
+    }
   }, []);
   const active = data.history.find((item) => item.id === activeId);
   const search = useCallback(
@@ -63,6 +72,7 @@ export function useWorkspace() {
     ) => {
       if (!hydrated) return;
       cancelCurrent();
+      setLastReveal(null);
       const requestNumber = sequence.current;
       const controller = new AbortController();
       currentRequest.current = controller;
@@ -73,6 +83,7 @@ export function useWorkspace() {
         status: 'loading',
         sourceSlug,
         sources: existing?.sources ?? [],
+        ...(existing?.response ? { response: existing.response } : {}),
       };
       setData((previous) => ({
         ...previous,
@@ -115,10 +126,11 @@ export function useWorkspace() {
           ...previous,
           history: previous.history.map((item) =>
             item.id === conversation.id
-              ? { ...item, status: 'success', response, sources }
+              ? { ...item, status: 'success', response, sources, error: undefined }
               : item,
           ),
         }));
+        setLastReveal({ id: conversation.id, key: `${conversation.id}:${requestNumber}` });
       } catch (error) {
         if (requestNumber !== sequence.current) return;
         const aborted = error instanceof ApiError && error.kind === 'aborted';
@@ -146,6 +158,7 @@ export function useWorkspace() {
   function newChat() {
     cancelCurrent();
     setActiveId(null);
+    setLastReveal(null);
     setView('search');
   }
   function select(id: string) {
@@ -157,11 +170,13 @@ export function useWorkspace() {
       ),
     }));
     setActiveId(id);
+    setLastReveal(null);
     setView('search');
   }
   function showSaved() {
     cancelCurrent();
     setActiveId(null);
+    setLastReveal(null);
     setView('saved');
   }
   function toggleSave(result: SearchResult) {
@@ -216,6 +231,7 @@ export function useWorkspace() {
     cancelCurrent();
     setData((previous) => ({ ...previous, history: [], saved: [] }));
     setActiveId(null);
+    setLastReveal(null);
     setView('search');
     setNotice('Riwayat dan simpanan lokal dihapus.');
   }
@@ -228,6 +244,7 @@ export function useWorkspace() {
     active,
     view,
     notice,
+    lastReveal,
     search,
     newChat,
     select,

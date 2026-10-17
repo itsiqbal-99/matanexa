@@ -1,6 +1,6 @@
 'use client';
 import { isTextResult } from './types';
-import { Bookmark, BookOpen, Check, Copy, ArrowUpRight } from 'lucide-react';
+import { Bookmark, Check, Copy, ArrowUpRight } from 'lucide-react';
 import { Modal } from '../../components/modal';
 import type { SearchResult } from './types';
 export function ResultCard({
@@ -19,10 +19,7 @@ export function ResultCard({
   return (
     <article className="result-card" aria-label={result.title}>
       <div className="result-kicker">
-        <span>
-          <BookOpen size={14} />
-          {result.collection}
-        </span>
+        <span>{result.collection}</span>
         <span className="mock-tag">
           {'isResearchOnly' in result
             ? 'Pilot riset lokal'
@@ -84,6 +81,7 @@ export function ResultDetail({
     <Modal
       title={isTextResult(result) ? 'Detail hadits' : 'Detail contoh'}
       onClose={onClose}
+      panel
     >
       <div className="detail-content">
         <span className="mock-tag">

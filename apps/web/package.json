@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3000",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "test:smoke": "node --test tests/api-storage-smoke.cjs"
   },
   "dependencies": {
     "lucide-react": "1.55.0",
@@ -21,6 +22,11 @@
     "@types/react-dom": "^19.0.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react-hooks": "7.1.1",
-    "tailwindcss": "4.3.3"
+    "tailwindcss": "4.3.3",
+    "@eslint/js": "^9.38.0",
+    "@types/node": "^22.15.0",
+    "eslint": "^9.38.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.46.2"
   }
 }

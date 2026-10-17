@@ -73,6 +73,17 @@ test('lexical contract fixture renders citation, RTL, provenance, copy and persi
   await article.getByRole('button', { name: /Simpan kutipan/ }).click();
   await article.getByRole('button', { name: /Lihat detail/ }).click();
   const detail = page.getByRole('dialog', { name: 'Detail hadits' });
+  await expect(detail).toBeVisible();
+  const box = await detail.boundingBox();
+  expect(box).not.toBeNull();
+  if (info.project.name === 'desktop') {
+    expect(
+      Math.abs(box!.x + box!.width / 2 - page.viewportSize()!.width / 2),
+    ).toBeLessThanOrEqual(1);
+    expect(box!.y).toBeGreaterThanOrEqual(24);
+  } else {
+    expect(Math.round(box!.width)).toBe(390);
+  }
   await expect(detail.locator('[lang="ar"]')).toHaveAttribute('dir', 'rtl');
   await expect(
     detail.getByText('SIMULASI ATRIBUSI', { exact: false }),
