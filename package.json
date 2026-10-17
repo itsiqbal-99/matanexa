@@ -1,0 +1,46 @@
+{
+  "name": "matanexa",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24.22.0 <25",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "dev": "concurrently --kill-others --names WEB,API --prefix-colors cyan,green \"npm run dev --workspace @matanexa/web\" \"npm run dev --workspace @matanexa/api\"",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "typecheck": "npm run typecheck --workspaces && tsc -p tsconfig.e2e.json",
+    "test": "npm run test --workspaces --if-present",
+    "test:smoke": "node scripts/smoke.mjs",
+    "test:e2e": "playwright test",
+    "db:check": "npm run db:check --workspace @matanexa/api",
+    "db:audit": "npm run db:audit --workspace @matanexa/api",
+    "db:migrate": "npm run db:migrate --workspace @matanexa/api",
+    "db:import": "npm run db:import --workspace @matanexa/api --",
+    "test:db": "npm run test:db --workspace @matanexa/api",
+    "search:evaluate": "npm run search:evaluate --workspace @matanexa/api",
+    "pilot:download": "npm run pilot:download --workspace @matanexa/api",
+    "pilot:prepare": "npm run pilot:prepare --workspace @matanexa/api",
+    "pilot:import": "npm run pilot:import --workspace @matanexa/api --",
+    "pilot:index": "npm run pilot:index --workspace @matanexa/api",
+    "pilot:evaluate": "npm run pilot:evaluate --workspace @matanexa/api --",
+    "format": "prettier --write package.json .prettierrc.json apps scripts tests/e2e tests/fixtures tests/pilot playwright*.config.ts tsconfig.e2e.json decisions/ADR-002.md decisions/ADR-003.md decisions/ADR-004.md decisions/ADR-005.md decisions/ADR-006.md docs/G0_REPORT.md docs/G1_REPORT.md docs/G2_REPORT.md docs/G26* docs/04_DATA_GOVERNANCE.md docs/G25* docs/G3* docs/SEARCH_ENGINE.md docs/DATABASE.md docs/DATASET_AUDIT.md docs/G2_IMPORT_REPORT.json contracts/openapi.yaml contracts/search-response-MOCK.example.json README.md TASKS.md",
+    "format:check": "prettier --check package.json .prettierrc.json apps scripts tests/e2e tests/fixtures tests/pilot playwright*.config.ts tsconfig.e2e.json decisions/ADR-002.md decisions/ADR-003.md decisions/ADR-004.md decisions/ADR-005.md decisions/ADR-006.md docs/G0_REPORT.md docs/G1_REPORT.md docs/G2_REPORT.md docs/G26* docs/04_DATA_GOVERNANCE.md docs/G25* docs/G3* docs/SEARCH_ENGINE.md docs/DATABASE.md docs/DATASET_AUDIT.md docs/G2_IMPORT_REPORT.json contracts/openapi.yaml contracts/search-response-MOCK.example.json README.md TASKS.md",
+    "pilot:reindex": "npm run pilot:reindex --workspace @matanexa/api",
+    "test:pilot": "playwright test -c playwright.pilot.config.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "1.64.0",
+    "@types/node": "^24.0.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.39.0",
+    "prettier": "^3.0.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.2"
+  }
+}

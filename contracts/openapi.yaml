@@ -1,0 +1,311 @@
+openapi: 3.1.0
+info:
+  title: Matanexa Local API
+  version: 1.0.0
+  description: NestJS REST API. Not an LLM agent.
+servers:
+  - url: http://localhost:4000/api/v1
+paths:
+  /health:
+    get:
+      operationId: health
+      responses:
+        '200':
+          description: Service state
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, mode]
+                properties:
+                  status: { type: string, enum: [ok] }
+                  mode: { type: string, enum: [mock, lexical, hybrid] }
+  /sources:
+    get:
+      operationId: listSources
+      responses:
+        '200':
+          description: Approved sources with verified hadiths, or empty in mock.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required: [slug, displayName]
+                      properties:
+                        slug: { type: string }
+                        displayName: { type: string }
+  /search:
+    post:
+      operationId: searchHadiths
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+  /hadiths/{id}:
+    get:
+      operationId: getHadith
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Approved verified full record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/VerifiedResult' }
+        '404':
+          $ref: '#/components/responses/Error'
+components:
+  responses:
+    Error:
+      description: Request failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                required: [code, message, requestId]
+                properties:
+                  code: { type: string }
+                  message: { type: string }
+                  requestId: { type: string }
+  schemas:
+    SearchRequest:
+      type: object
+      required: [query]
+      additionalProperties: false
+      properties:
+        query:
+          {
+            type: string,
+            minLength: 3,
+            maxLength: 2400,
+            description: Original input; 3–300 codepoints after NFKC/whitespace normalization. Raw transport cap 2400.,
+          }
+        page: { type: integer, minimum: 1, maximum: 10, default: 1 }
+        limit: { type: integer, minimum: 1, maximum: 20, default: 10 }
+        filters:
+          type: object
+          additionalProperties: false
+          properties:
+            sourceSlugs:
+              type: array
+              maxItems: 20
+              uniqueItems: true
+              items: { type: string, minLength: 1, maxLength: 64 }
+    Citation:
+      type: object
+      required: [collection, number, numberingScheme]
+      properties:
+        collection: { type: string }
+        number: { type: string }
+        numberingScheme: { type: string }
+    HadithSummary:
+      type: object
+      required: [id, title, excerpt, citation]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        excerpt: { type: string }
+        citation: { $ref: '#/components/schemas/Citation' }
+        referenceUrl: { type: [string, 'null'], format: uri }
+    SearchResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          required: [results, totalCandidates]
+          properties:
+            query:
+              {
+                type: string,
+                description: Original independent user query; normalization remains server internal.,
+              }
+            results:
+              type: array
+              items:
+                anyOf:
+                  - { $ref: '#/components/schemas/VerifiedResult' }
+                  - { $ref: '#/components/schemas/MockSummary' }
+                  - { $ref: '#/components/schemas/ResearchResult' }
+            totalCandidates: { type: integer, minimum: 0 }
+        meta:
+          type: object
+          required: [page, limit, hasMore, modeUsed, requestId]
+          properties:
+            page: { type: integer }
+            limit: { type: integer }
+            hasMore: { type: boolean }
+            modeUsed:
+              { type: string, enum: [mock, lexical, hybrid, lexical_fallback] }
+            requestId: { type: string }
+            dataScope:
+              {
+                type: string,
+                const: local_pilot,
+                description: Development-only opt-in scope; research results never occur in published scope.,
+              }
+            fallbackReason:
+              {
+                type: string,
+                enum:
+                  [
+                    NOT_CONFIGURED,
+                    INDEX_NOT_READY,
+                    AMBIGUOUS_QUERY,
+                    TIMEOUT,
+                    INVALID_RESPONSE,
+                    REMOTE_ERROR,
+                    EMBEDDING_UNAVAILABLE,
+                  ],
+              }
+            queryStatus:
+              {
+                type: string,
+                enum: [ready, ambiguous],
+                description: Optional lexical-only clarification state.,
+              }
+    MockSummary:
+      description: Explicit UI simulation; never a real hadith. MOCK is a fixture marker, not a hadith number.
+      allOf:
+        - $ref: '#/components/schemas/HadithSummary'
+        - type: object
+          required:
+            [
+              collection,
+              sourceSlug,
+              hadithNumber,
+              arabicText,
+              translation,
+              grade,
+              sourceUrl,
+              isVerified,
+            ]
+          properties:
+            collection: { type: string }
+            sourceSlug: { type: string, enum: [mock-a, mock-b] }
+            hadithNumber: { type: 'null' }
+            arabicText: { type: 'null' }
+            translation: { type: 'null' }
+            grade: { type: 'null' }
+            sourceUrl: { type: 'null' }
+            isVerified: { type: boolean, const: false }
+    VerifiedResult:
+      description: Published database record, source approved and text references checked; no automatic authenticity grade implied.
+      allOf:
+        - $ref: '#/components/schemas/HadithDetail'
+        - type: object
+          required:
+            [
+              collection,
+              sourceSlug,
+              hadithNumber,
+              numberingScheme,
+              translation,
+              translationAttribution,
+              isVerified,
+              sourceUrl,
+              referenceUrl,
+              verificationReferenceUrl,
+              provenance,
+              grade,
+              grader,
+              gradingSourceUrl,
+            ]
+          properties:
+            collection: { type: string }
+            sourceSlug: { type: string }
+            hadithNumber: { type: string }
+            numberingScheme: { type: string }
+            translation: { type: string }
+            isVerified: { type: boolean, const: true }
+            sourceUrl: { type: string, format: uri }
+            referenceUrl: { type: string, format: uri }
+            verificationReferenceUrl: { type: string, format: uri }
+            provenance:
+              type: object
+              required: [sourceName, attribution, licenseName, licenseUrl]
+              properties:
+                sourceName: { type: string }
+                attribution: { type: string }
+                licenseName: { type: string }
+                licenseUrl: { type: string, format: uri }
+    ResearchResult:
+      description: Localhost development pilot only. Source research_only, draft/review text; no publication permission or human verification claim. Requires meta.dataScope local_pilot for search. Detail retains isResearchOnly and no-store headers.
+      allOf:
+        - $ref: '#/components/schemas/HadithDetail'
+        - type: object
+          required:
+            [
+              collection,
+              sourceSlug,
+              hadithNumber,
+              numberingScheme,
+              translation,
+              translationAttribution,
+              isVerified,
+              isResearchOnly,
+              sourceUrl,
+              referenceUrl,
+              verificationReferenceUrl,
+              provenance,
+              grade,
+              grader,
+              gradingSourceUrl,
+            ]
+          properties:
+            collection: { type: string }
+            sourceSlug: { type: string, const: fawaz-bukhari-local }
+            hadithNumber: { type: string }
+            numberingScheme: { type: string }
+            translation: { type: string }
+            isVerified: { type: boolean, const: false }
+            isResearchOnly: { type: boolean, const: true }
+            sourceUrl: { type: string, format: uri }
+            referenceUrl: { type: string, format: uri }
+            verificationReferenceUrl: { type: 'null' }
+            grade: { type: 'null' }
+            grader: { type: 'null' }
+            gradingSourceUrl: { type: 'null' }
+            provenance: { type: object }
+    HadithDetail:
+      allOf:
+        - $ref: '#/components/schemas/HadithSummary'
+        - type: object
+          required: [arabicText, indonesianText, bookName]
+          properties:
+            arabicText: { type: string }
+            indonesianText: { type: string }
+            bookName: { type: string }
+            chapterName: { type: [string, 'null'] }
+            narrator: { type: [string, 'null'] }
+            translationAttribution: { type: string }
+            grade: { type: [string, 'null'] }
+            grader: { type: [string, 'null'] }
+            gradingSourceUrl: { type: [string, 'null'], format: uri }

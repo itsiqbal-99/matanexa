@@ -1,0 +1,48 @@
+{
+  "phase": "G2",
+  "status": "blocked_before_real_import",
+  "approvedSources": 0,
+  "realRecordsImported": 0,
+  "publishedRealRecords": 0,
+  "counts": {
+    "imported": 0,
+    "updated": 0,
+    "skipped": 0,
+    "duplicated": 0,
+    "failed": 0
+  },
+  "databaseImportRunExecuted": false,
+  "blockers": [
+    "Belum ada izin konten Arab/terjemahan Indonesia dan bukti verifikasi record yang memadai"
+  ],
+  "databaseFollowUp": {
+    "phase": "G3",
+    "credentialsAvailable": true,
+    "connectionVerified": true,
+    "note": "Import nyata tetap belum dijalankan; hasil tes fixture terpisah pada G3_REPORT.md"
+  },
+  "unitFixtureOnly": {
+    "kind": "SQL protocol double — bukan import PostgreSQL",
+    "firstRun": {
+      "imported": 1,
+      "updated": 0,
+      "skipped": 0,
+      "duplicated": 1,
+      "failed": 2
+    },
+    "repeatedRun": {
+      "imported": 0,
+      "updated": 0,
+      "skipped": 1,
+      "duplicated": 0,
+      "failed": 0
+    },
+    "changedRun": {
+      "imported": 0,
+      "updated": 1,
+      "skipped": 0,
+      "duplicated": 0,
+      "failed": 0
+    }
+  }
+}

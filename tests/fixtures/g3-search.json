@@ -1,0 +1,356 @@
+{
+  "kind": "SIMULATION_ONLY_TOPIC_RETRIEVAL",
+  "judgments": "Exhaustive label-level relevant/partial/irrelevant judgments over 32 canonical synthetic documents, authored with the fixtures and not independently reviewed. Only relevant counts in binary metrics. Partial means related but missing the specific cue. No real hadith IDs or religious text.",
+  "partialJudgments": {
+    "G3-01": {
+      "ids": ["SIM-knowledge-3", "SIM-knowledge-4"],
+      "reason": "Label pengetahuan/pendidikan lebih luas daripada frasa menuntut ilmu; hanya sebagian relevan pada tingkat label simulasi."
+    },
+    "G3-12": {
+      "ids": ["SIM-parents-3", "SIM-parents-4"],
+      "reason": "Label ayah atau orang tua umum belum menyebut ibu secara khusus."
+    },
+    "G3-13": {
+      "ids": [
+        "SIM-parents-2",
+        "SIM-parents-3",
+        "SIM-parents-4",
+        "SIM-parents-5"
+      ],
+      "reason": "Label hanya salah satu orang tua atau orang tua umum, sedangkan query meminta bapak dan ibu."
+    },
+    "G3-16": {
+      "ids": ["SIM-parents-3", "SIM-parents-4"],
+      "reason": "Label ayah atau orang tua umum belum menyebut ibu/bunda secara khusus."
+    },
+    "G3-17": {
+      "ids": ["SIM-parents-2", "SIM-parents-4", "SIM-parents-5"],
+      "reason": "Label ibu atau orang tua umum belum menyebut ayah/papa secara khusus."
+    },
+    "G3-32": {
+      "ids": ["SIM-speech-1", "SIM-speech-2", "SIM-speech-4", "SIM-speech-5"],
+      "reason": "Topik lisan terkait, tetapi tidak menyebut berbohong yang diminta query."
+    },
+    "G3-38": {
+      "ids": [
+        "SIM-charity-1",
+        "SIM-charity-3",
+        "SIM-charity-4",
+        "SIM-charity-5"
+      ],
+      "reason": "Topik berbagi terkait, tetapi label tidak menyebut infak/infaq."
+    },
+    "G3-39": {
+      "ids": [
+        "SIM-charity-1",
+        "SIM-charity-3",
+        "SIM-charity-4",
+        "SIM-charity-5"
+      ],
+      "reason": "Topik berbagi terkait, tetapi label tidak menyebut infak/infaq."
+    },
+    "G3-40": {
+      "ids": [
+        "SIM-charity-1",
+        "SIM-charity-2",
+        "SIM-charity-3",
+        "SIM-charity-5"
+      ],
+      "reason": "Topik berbagi terkait, tetapi label tidak menyebut donasi."
+    },
+    "G3-47": {
+      "ids": ["SIM-eating-1", "SIM-eating-3", "SIM-eating-4", "SIM-eating-5"],
+      "reason": "Adab makan terkait, tetapi label tidak menyebut basmalah sebelum makan."
+    }
+  },
+  "topics": {
+    "knowledge": [
+      "menuntut ilmu belajar pengetahuan pendidikan",
+      "belajar ilmu mencari ilmu",
+      "pengetahuan ilmu orang berilmu",
+      "pendidikan mempelajari ilmu",
+      "ilmu belajar pengetahuan pendidikan"
+    ],
+    "parents": [
+      "berbakti orang tua ibu ayah",
+      "menghormati orang tua ibu bunda mama",
+      "ayah bapak papa berbakti",
+      "birrul walidain orang tua",
+      "berbakti kepada ibu orang tua"
+    ],
+    "anger": [
+      "jangan marah menahan marah pengendalian emosi",
+      "amarah mengendalikan emosi",
+      "menahan marah emosi",
+      "marah pengendalian amarah",
+      "tidak gampang marah emosi"
+    ],
+    "speech": [
+      "menjaga lisan ucapan perkataan",
+      "berkata baik atau diam lisan",
+      "jangan berbohong lisan",
+      "ghibah gosip menjaga perkataan",
+      "bicara berbicara ucapan lisan"
+    ],
+    "charity": [
+      "sedekah bersedekah sedikit",
+      "infak infaq sedekah",
+      "kedermawanan berbagi rezeki",
+      "donasi sedekah",
+      "bersedekah memberi sedekah"
+    ],
+    "eating": [
+      "adab makan tangan kanan",
+      "membaca basmalah bismillah sebelum makan",
+      "makan minum adab makan",
+      "jangan makan tangan kiri makan tangan kanan",
+      "santap makan tangan kanan"
+    ]
+  },
+  "queries": [
+    [
+      "Hadits tentang menuntut ilmu",
+      "knowledge",
+      "exact_keyword",
+      "Frasa inti ilmu"
+    ],
+    [
+      "Kasih dong hadits tentang ilmu",
+      "knowledge",
+      "informal_language",
+      "Kata percakapan tidak menjadi anchor"
+    ],
+    [
+      "Minta hadist soal belajar",
+      "knowledge",
+      "informal_language",
+      "Ejaan hadist dan kata permintaan"
+    ],
+    [
+      "Ada hadis tentang pentingnya menuntut ilmu?",
+      "knowledge",
+      "exact_keyword",
+      "Pertanyaan dengan tanda baca"
+    ],
+    [
+      "Saya ingin mencari hadits mengenai keutamaan orang berilmu",
+      "knowledge",
+      "informal_language",
+      "Cue berilmu"
+    ],
+    [
+      "Rasulullah pernah bersabda soal belajar?",
+      "knowledge",
+      "informal_language",
+      "Referensi dicari tanpa menganggap redaksi benar"
+    ],
+    [
+      "Apa keutamaan pengetahuan?",
+      "knowledge",
+      "synonym",
+      "Hubungan topik; bukan sinonim mutlak ilmu"
+    ],
+    ["hadits belajr", "knowledge", "typo", "Koreksi eksplisit satu ejaan"],
+    [
+      "Kasih hadis tentang ilum dong",
+      "knowledge",
+      "typo",
+      "Transposisi yang dicatat dalam kamus"
+    ],
+    ["ilmu", "knowledge", "exact_keyword", "Input singkat"],
+    [
+      "Hadits tentang berbakti kepada orang tua",
+      "parents",
+      "exact_keyword",
+      "Frasa orang tua"
+    ],
+    [
+      "Hadits tentang hormat sama ibu",
+      "parents",
+      "informal_language",
+      "Sama menjadi kepada; ibu sebagai cue"
+    ],
+    [
+      "Berbakti ke bapak dan ibu",
+      "parents",
+      "synonym",
+      "Bapak/ayah setara penggunaan; ibu topik terkait"
+    ],
+    [
+      "Minta hadis soal ortu dong",
+      "parents",
+      "informal_language",
+      "Singkatan ortu"
+    ],
+    [
+      "hadist birrul walidain",
+      "parents",
+      "exact_keyword",
+      "Frasa cue terkonfigurasi"
+    ],
+    [
+      "Ada hadis tentang bunda?",
+      "parents",
+      "synonym",
+      "Ibu/bunda setara penggunaan dalam konteks orang tua"
+    ],
+    [
+      "Keutamaan menghormati papa",
+      "parents",
+      "synonym",
+      "Papa/ayah setara penggunaan"
+    ],
+    ["hadits tentang ibuu", "parents", "typo", "Koreksi eksplisit huruf ganda"],
+    [
+      "Saya ingin mencari rujukan hadits mengenai bagaimana berbakti kepada ayah dan ibu dalam kehidupan sehari-hari",
+      "parents",
+      "long_query",
+      "Pertanyaan panjang tetap mempertahankan kata utama"
+    ],
+    [
+      "Hadis soal jangan marah",
+      "anger",
+      "negation",
+      "Negasi jangan dipertahankan"
+    ],
+    [
+      "Minta dong hadist soal jangan gampang marah!",
+      "anger",
+      "negation",
+      "Negasi dan informal"
+    ],
+    [
+      "Bagaimana cara menahan emosi menurut hadits?",
+      "anger",
+      "synonym",
+      "Cue topik emosi, bukan sinonim mutlak marah"
+    ],
+    ["Hadits pengendalian amarah", "anger", "exact_keyword", "Kata amarah"],
+    ["hadits tentang mrah", "anger", "typo", "Koreksi eksplisit"],
+    [
+      "nggak gampang marah",
+      "anger",
+      "negation",
+      "Nggak menjadi tidak tanpa menghapus negasi"
+    ],
+    ["cara mengendalikan emosi", "anger", "exact_keyword", "Frasa topik"],
+    ["amarah", "anger", "exact_keyword", "Query satu kata"],
+    ["Hadits tentang menjaga lisan", "speech", "exact_keyword", "Anchor lisan"],
+    [
+      "Ada hadis tentang berkata baik?",
+      "speech",
+      "exact_keyword",
+      "Frasa perkataan baik"
+    ],
+    [
+      "hadits menjaga perkataan",
+      "speech",
+      "synonym",
+      "Perkataan/ucapan dalam konteks"
+    ],
+    ["hadits ucapan", "speech", "synonym", "Varian ucapan"],
+    ["Jangan berbohong", "speech", "negation", "Jangan tidak dihapus"],
+    ["hadits tentang lisn", "speech", "typo", "Koreksi eksplisit"],
+    [
+      "Kasih hadis soal gosip dong",
+      "speech",
+      "informal_language",
+      "Gosip cue terkait lisan"
+    ],
+    ["ghibah", "speech", "exact_keyword", "Korpus fixture bertopik lisan"],
+    ["Hadits tentang sedekah", "charity", "exact_keyword", "Anchor sedekah"],
+    [
+      "Ada hadis tentang bersedekah sedikit?",
+      "charity",
+      "informal_language",
+      "Bersedekah cue terkait"
+    ],
+    ["hadis infaq", "charity", "synonym", "Ejaan infak/infaq"],
+    ["hadits infak", "charity", "synonym", "Pasangan ejaan infaq"],
+    [
+      "Kasih dong hadis soal donasi",
+      "charity",
+      "informal_language",
+      "Donasi cue terkait, bukan sinonim mutlak"
+    ],
+    ["hadits kedermawanan", "charity", "synonym", "Topik terkait berderma"],
+    ["hadits sedekha", "charity", "typo", "Transposisi eksplisit"],
+    ["hadits sedkah", "charity", "typo", "Koreksi eksplisit"],
+    ["Hadits adab makan", "eating", "exact_keyword", "Anchor makan"],
+    [
+      "Rasulullah mengajarkan makan pakai tangan apa?",
+      "eating",
+      "informal_language",
+      "Makan anchor; tidak menghasilkan jawaban agama"
+    ],
+    ["makan tangan kanan", "eating", "exact_keyword", "Frasa tangan kanan"],
+    [
+      "membaca basmalah sebelum makan",
+      "eating",
+      "exact_keyword",
+      "Basmalah hanya perluasan terkait dalam konteks makan"
+    ],
+    ["hadits minum", "eating", "synonym", "Minum cue adab makan/minum"],
+    ["hadist makn", "eating", "typo", "Koreksi eksplisit"],
+    [
+      "jangan makan pakai tangan kiri",
+      "eating",
+      "negation",
+      "Negasi dan arah tangan tidak diubah menjadi kutipan"
+    ],
+    [
+      "Saya ingin mencari referensi hadis mengenai adab makan dan penggunaan tangan kanan tanpa meminta penjelasan hukum fikih",
+      "eating",
+      "long_query",
+      "Pertanyaan panjang bukan permintaan fatwa"
+    ],
+    [
+      "Hadits tentang ini dong",
+      null,
+      "ambiguous_query",
+      "Tidak ada anchor topik"
+    ],
+    ["Minta hadist dong", null, "ambiguous_query", "Hanya kata percakapan"],
+    ["apakah ada hadits", null, "ambiguous_query", "Tidak ada kata utama"],
+    [
+      "hadits mengenai orang baik",
+      null,
+      "ambiguous_query",
+      "Kata umum belum memberi anchor yang cukup"
+    ],
+    ["jangan", null, "ambiguous_query", "Negasi sendiri tidak cukup"],
+    [
+      "mobil listrik baterai",
+      null,
+      "negative_no_result",
+      "Tidak ada label fixture yang sesuai"
+    ],
+    [
+      "harga laptop terbaru",
+      null,
+      "negative_no_result",
+      "Di luar korpus fixture"
+    ],
+    [
+      "resep rendang",
+      null,
+      "negative_no_result",
+      "Tidak terdapat dalam korpus fixture"
+    ],
+    ["ibukota", null, "negative_no_result", "Bukan substring ibu"],
+    ["tidak marah", "anger", "negation", "Negasi tidak dihapus"],
+    [
+      "bukan sedekah",
+      "charity",
+      "negation",
+      "Negasi dicatat, tidak ditafsirkan sebagai hukum"
+    ],
+    ["tanpa berbohong", "speech", "negation", "Tanpa tetap menjadi sinyal"],
+    [
+      "dilarang marah",
+      "anger",
+      "negation",
+      "Tidak mengesahkan klaim larangan pengguna"
+    ]
+  ]
+}

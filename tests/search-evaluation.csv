@@ -1,0 +1,31 @@
+id,query_id,user_query,expected_hadith_ids_verified,reviewer,notes
+Q01,Q01,ada hadits tentang makan pakai tangan kanan?,,,Label only after permitted corpus and manual verification
+Q02,Q02,adab makan tangan kanan itu bagaimana?,,,Label only after permitted corpus and manual verification
+Q03,Q03,jangan makan pakai tangan kiri,,,Label only after permitted corpus and manual verification
+Q04,Q04,apa hadits tentang membaca bismillah sebelum makan?,,,Label only after permitted corpus and manual verification
+Q05,Q05,doa setelah makan,,,Label only after permitted corpus and manual verification
+Q06,Q06,apa hadits tentang jangan marah?,,,Label only after permitted corpus and manual verification
+Q07,Q07,cara mengendalikan amarah menurut hadits,,,Label only after permitted corpus and manual verification
+Q08,Q08,hadits tentang sabar saat ditimpa musibah,,,Label only after permitted corpus and manual verification
+Q09,Q09,keutamaan bersedekah,,,Label only after permitted corpus and manual verification
+Q10,Q10,sedekah yang utama,,,Label only after permitted corpus and manual verification
+Q11,Q11,apa hadits tentang berbakti pada ibu?,,,Label only after permitted corpus and manual verification
+Q12,Q12,orang tua jangan dibentak,,,Label only after permitted corpus and manual verification
+Q13,Q13,keutamaan silaturahmi,,,Label only after permitted corpus and manual verification
+Q14,Q14,larangan berbohong,,,Label only after permitted corpus and manual verification
+Q15,Q15,perintah berkata baik atau diam,,,Label only after permitted corpus and manual verification
+Q16,Q16,apa hadits tentang menjaga kebersihan?,,,Label only after permitted corpus and manual verification
+Q17,Q17,menuntut ilmu itu penting,,,Label only after permitted corpus and manual verification
+Q18,Q18,tata cara salam dalam islam,,,Label only after permitted corpus and manual verification
+Q19,Q19,senyum pada orang lain,,,Label only after permitted corpus and manual verification
+Q20,Q20,bersikap lembut kepada anak,,,Label only after permitted corpus and manual verification
+Q21,Q21,keutamaan salat berjamaah,,,Label only after permitted corpus and manual verification
+Q22,Q22,salat subuh berjamaah,,,Label only after permitted corpus and manual verification
+Q23,Q23,apa keutamaan dzikir pagi?,,,Label only after permitted corpus and manual verification
+Q24,Q24,hadits keutamaan puasa senin kamis,,,Label only after permitted corpus and manual verification
+Q25,Q25,niat dalam amal,,,Label only after permitted corpus and manual verification
+Q26,Q26,bolehkah membicarakan keburukan orang?,,,Label only after permitted corpus and manual verification
+Q27,Q27,larangan ghibah,,,Label only after permitted corpus and manual verification
+Q28,Q28,hadits tentang amanah,,,Label only after permitted corpus and manual verification
+Q29,Q29,hadits untuk orang yang suka menolong,,,Label only after permitted corpus and manual verification
+Q30,Q30,bagaimana etika bertetangga dalam islam,,,Label only after permitted corpus and manual verification

@@ -1,0 +1,74 @@
+{
+  "phase": "G2.5",
+  "scope": "SIMULATION_ONLY; real corpus blocked before acquisition",
+  "realCorpus": {
+    "approvedSources": 0,
+    "downloadedRecords": 0,
+    "importedRecords": 0,
+    "verifiedRecords": 0,
+    "crossCheckedSamples": 0,
+    "mismatches": null,
+    "missingFields": null,
+    "inconsistentNumbering": null,
+    "note": "N/A karena tidak ada pilot berizin; bukan hasil pemeriksaan tanpa masalah."
+  },
+  "candidateStatus": {
+    "gadingnst/hadith-api": "pending_review",
+    "renomureza/hadis-api-id": "pending_review",
+    "hapibi/hadith-json": "pending_review",
+    "beta.sunnah.com/developers": "pending_review"
+  },
+  "simulationEvaluation": {
+    "topicDocuments": 30,
+    "noiseDocuments": 2,
+    "intentionalDuplicateRows": 1,
+    "totalTemporaryRows": 33,
+    "canonicalDocuments": 32,
+    "queries": 64,
+    "gradedJudgments": 2048,
+    "relevantJudgments": 242,
+    "partialJudgments": 33,
+    "irrelevantJudgments": 1773,
+    "actualVerifiedHadithIds": null,
+    "independentJudgmentReview": false,
+    "limitations": "Label topik dan qrels ditulis bersama fixture; tidak mengukur relevansi hadits nyata."
+  },
+  "isolatedImportTest": {
+    "kind": "SIMULATION_ONLY_NEON_TEST; temporary random schema removed after test",
+    "inputRecords": 3,
+    "dryRun": {
+      "plannedImported": 1,
+      "duplicated": 1,
+      "failedInvalidRecord": 1,
+      "committed": false,
+      "remainingHadithRows": 0,
+      "remainingImportRuns": 0
+    },
+    "commitRun": {
+      "importedDraft": 1,
+      "duplicated": 1,
+      "failedInvalidRecord": 1
+    },
+    "repeatedRun": { "imported": 0, "skipped": 1 },
+    "invalidRecordMissingRequiredFields": [
+      "collection",
+      "hadithNumber",
+      "numberingScheme",
+      "bookName",
+      "arabicText",
+      "indonesianText",
+      "translationAttribution",
+      "referenceUrl"
+    ],
+    "conflictingDuplicate": "Rejected in client-double regression test, not a real corpus mismatch",
+    "sourceTextHandling": "Raw strings preserved; only normalized search field transformed",
+    "publishedSimulationRecords": 0
+  },
+  "g4RealDataReady": false,
+  "evidence": [
+    "DATASET_AUDIT.md",
+    "G25_DATABASE_AUDIT.json",
+    "G3_BASELINE.json",
+    "G3_REPORT.md"
+  ]
+}

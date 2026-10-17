@@ -1,0 +1,528 @@
+{
+  "auditedAt": "2026-10-16T23:51:22.964Z",
+  "kind": "READ_ONLY_APPLICATION_DATABASE_AUDIT",
+  "counts": {
+    "sources": 0,
+    "approved_sources": 0,
+    "real_records": 0,
+    "simulation_records": 0,
+    "public_records": 0
+  },
+  "migrations": [
+    "001_foundation.sql",
+    "002_search_indexes.sql",
+    "003_curated_topics.sql"
+  ],
+  "columns": [
+    {
+      "table_name": "hadith_collections",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadith_collections",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_collections",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_collections",
+      "column_name": "original_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_collections",
+      "column_name": "description",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_collections",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hadith_topic_relations",
+      "column_name": "hadith_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadith_topic_relations",
+      "column_name": "topic_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadith_topics",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadith_topics",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_topics",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_topics",
+      "column_name": "description",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadith_topics",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "source_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "collection_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "hadith_number",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "numbering_scheme",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "book_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "chapter_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "narrator",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "arabic_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "indonesian_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "normalized_translation",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "translation_attribution",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "reference_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "grading_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "grading_attribution",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "grading_source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "verification_status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "verified_by",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "verified_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "verification_reference_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "is_simulation",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "content_hash",
+      "data_type": "character"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "import_run_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "raw_record",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hadiths",
+      "column_name": "search_document",
+      "data_type": "tsvector"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "source_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "dataset_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "dataset_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "file_sha256",
+      "data_type": "character"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "report",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "import_runs",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "source_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "collection_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "hadith_number",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "numbering_scheme",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "book_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "chapter_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "narrator",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "arabic_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "indonesian_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "normalized_translation",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "translation_attribution",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "reference_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "grading_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "grading_attribution",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "grading_source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "verification_status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "verified_by",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "verified_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "verification_reference_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "is_simulation",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "content_hash",
+      "data_type": "character"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "import_run_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "raw_record",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "collection_slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "collection_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "source_slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "source_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "source_attribution",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "license_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "license_reference_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "search_document",
+      "data_type": "tsvector"
+    },
+    {
+      "table_name": "published_hadiths",
+      "column_name": "topic_slugs",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "schema_migrations",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "schema_migrations",
+      "column_name": "checksum",
+      "data_type": "character"
+    },
+    {
+      "table_name": "schema_migrations",
+      "column_name": "applied_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "display_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "original_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "publisher",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "edition",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "language",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "dataset_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "license_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "license_reference_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "attribution",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "permission_status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "permission_notes",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "permission_evidence_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "checked_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "source_catalog",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    }
+  ]
+}

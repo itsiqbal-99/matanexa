@@ -1,0 +1,1980 @@
+{
+  "kind": "REAL_LOCAL_RESEARCH_PILOT",
+  "createdAt": "2026-10-17T05:09:06.438Z",
+  "dataScope": "local_pilot",
+  "permissionStatus": "research_only",
+  "verificationStatus": "draft",
+  "counts": {
+    "published": 0,
+    "local_pilot": 404,
+    "approved_sources": 0
+  },
+  "sourceRevision": "df57907be35291c91ad6a6691180e22ca9920784",
+  "sourceHashes": {
+    "arabic": "e34a3402889ca378871da3c5984b7875c680920e93f1c8738ac7afe502179562",
+    "indonesian": "a3005e17d00578bc4937f2c43575c2a3883c5f848c25ca66b064d92f5144bafb"
+  },
+  "selected": 417,
+  "accepted": 404,
+  "rejected": [
+    {
+      "number": "5404",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "5441.2",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "5454",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "5464",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "5979",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "5982",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "6066",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "6067",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "6072",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "6075",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "6090",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "6175",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    },
+    {
+      "number": "4",
+      "reason": "EMPTY_OR_INVALID_LANGUAGE_TEXT"
+    }
+  ],
+  "import": {
+    "first": {
+      "runId": "640a4a37-2851-4c33-9332-3218d5a15ddf",
+      "dryRun": false,
+      "committed": true,
+      "imported": 404,
+      "updated": 0,
+      "skipped": 0,
+      "duplicated": 0,
+      "failed": 0,
+      "failures": []
+    },
+    "repeat": {
+      "runId": "f12269f9-e218-48d1-89cc-6f281c195010",
+      "dryRun": false,
+      "committed": true,
+      "imported": 0,
+      "updated": 0,
+      "skipped": 404,
+      "duplicated": 0,
+      "failed": 0,
+      "failures": []
+    },
+    "dryRun": {
+      "runId": "fd8d0969-b299-4ca5-9630-ab0f1be3854f",
+      "dryRun": true,
+      "committed": false,
+      "imported": 404,
+      "updated": 0,
+      "skipped": 0,
+      "duplicated": 0,
+      "failed": 0,
+      "failures": []
+    }
+  },
+  "vocabularyVersion": "id-lexical-v3",
+  "rankingVersion": "lexical-signals-v2",
+  "evaluationDatabaseTimeoutMs": 10000,
+  "judgmentMethod": "Manual reading by the coding agent of the pinned Indonesian source and the three user-specified anchors. Explicit content reasons per query; not automatic word-overlap labels, not independent human/scholarly verification. Additional retrieved results remain unjudged. These ten queries also guided lexical tuning, so this is a development pilot, not a held-out benchmark. Precision is a judged-positive lower bound; no exhaustive Recall.",
+  "precisionScope": "Judged-positive lower bound; unjudged results are not asserted irrelevant. No exhaustive recall or held-out evaluation.",
+  "realHybridMeasured": false,
+  "runs": [
+    {
+      "requestedMode": "lexical",
+      "observedModes": ["lexical"],
+      "metrics": {
+        "queryCount": 10,
+        "positiveJudgedQueries": 10,
+        "noResultJudgedQueries": 0,
+        "precisionAt5": 0.3,
+        "mrrAt10": 0.9333333333333332,
+        "hitRateAt5": 1,
+        "zeroResultRate": 0,
+        "noResultAccuracy": null,
+        "latencyMs": {
+          "p50": 1131.8815999999988,
+          "p95": 6545.9592999999995
+        }
+      },
+      "cases": [
+        {
+          "id": "P01",
+          "query": "Kalau makan menurut sunnah sebaiknya pakai tangan apa?",
+          "expectedNumbers": ["5376"],
+          "reason": "User anchor 5376: includes right hand instruction for eating, not merely the word tangan.",
+          "expectedDatabaseIds": ["479d5fd9-2267-4cc3-95b7-dc8045b404d1"],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 6545.9592999999995,
+          "totalCandidates": 69,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "b69286db-d804-4a8b-a036-25125d9a0287",
+              "hadithNumber": "1410",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "b7997a6e-f253-40fc-805a-db7f9ff40cb5",
+              "hadithNumber": "5377",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "6d45ebfa-e8ae-40ca-82ed-e50b66e79a08",
+              "hadithNumber": "5398",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "3f67e731-27e7-4c26-b890-43d733017370",
+              "hadithNumber": "5399",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4ca32497-7993-466a-837b-2446b9df7b55",
+              "hadithNumber": "5386",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ec792553-9940-48fe-81e9-dce3acd46a69",
+              "hadithNumber": "5396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8fbc2ec1-778e-4eee-86c4-bfff56512064",
+              "hadithNumber": "5440",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P02",
+          "query": "Saya mau tahu hadits tentang makan dengan tangan kanan.",
+          "expectedNumbers": ["5376"],
+          "reason": "User anchor 5376 directly describes eating with the right hand.",
+          "expectedDatabaseIds": ["479d5fd9-2267-4cc3-95b7-dc8045b404d1"],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 690.7235999999994,
+          "totalCandidates": 68,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "b7997a6e-f253-40fc-805a-db7f9ff40cb5",
+              "hadithNumber": "5377",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "6d45ebfa-e8ae-40ca-82ed-e50b66e79a08",
+              "hadithNumber": "5398",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "3f67e731-27e7-4c26-b890-43d733017370",
+              "hadithNumber": "5399",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4ca32497-7993-466a-837b-2446b9df7b55",
+              "hadithNumber": "5386",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ec792553-9940-48fe-81e9-dce3acd46a69",
+              "hadithNumber": "5396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8fbc2ec1-778e-4eee-86c4-bfff56512064",
+              "hadithNumber": "5440",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c5d80055-6c1e-4c3b-8535-547fddb5d12e",
+              "hadithNumber": "5415",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P03",
+          "query": "Kalau makan bareng, boleh ambil lauk yang jauh dari kita?",
+          "expectedNumbers": ["5376", "5377"],
+          "reason": "5376 and 5377 direct eating from the food in front of the person. 5446 concerns paired dates and permission, only adjacent context, not the spatial question.",
+          "expectedDatabaseIds": [
+            "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+            "b7997a6e-f253-40fc-805a-db7f9ff40cb5"
+          ],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 1913.4911999999986,
+          "totalCandidates": 214,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "6e37c6c3-7df2-4353-9747-02cdaf9d3509",
+              "hadithNumber": "5446",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "94108488-3e68-4bef-91ec-0443a9d6e240",
+              "hadithNumber": "6111",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "e3a936f6-615f-4a2a-9961-9b78bd8f49f9",
+              "hadithNumber": "6150",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "5eae3af8-1da6-4ed6-827e-1a4d5ade4bc5",
+              "hadithNumber": "1413",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8f8c5456-c1cf-481a-a4ab-19b6a1fd45e5",
+              "hadithNumber": "6191",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "d59f699b-a969-4e63-a8ce-5ddd8f751fb1",
+              "hadithNumber": "5435",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8b29b73c-5096-47bd-807a-3862a6f558a4",
+              "hadithNumber": "7",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P04",
+          "query": "Apakah ada anjuran membaca bismillah sebelum makan?",
+          "expectedNumbers": ["5376"],
+          "reason": "5376 includes the instruction to mention the name of Allah before eating; source spelling retained.",
+          "expectedDatabaseIds": ["479d5fd9-2267-4cc3-95b7-dc8045b404d1"],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 1131.8815999999988,
+          "totalCandidates": 87,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "bbbd78eb-0c4c-4864-ae4f-e6ce0dc6bd53",
+              "hadithNumber": "5378",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "714b872e-2e6f-43a9-b0f3-2e80d7b384a4",
+              "hadithNumber": "5458",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "b7997a6e-f253-40fc-805a-db7f9ff40cb5",
+              "hadithNumber": "5377",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "6d45ebfa-e8ae-40ca-82ed-e50b66e79a08",
+              "hadithNumber": "5398",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "3f67e731-27e7-4c26-b890-43d733017370",
+              "hadithNumber": "5399",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4ca32497-7993-466a-837b-2446b9df7b55",
+              "hadithNumber": "5386",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ec792553-9940-48fe-81e9-dce3acd46a69",
+              "hadithNumber": "5396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P05",
+          "query": "Bagaimana nasihat Rasulullah buat orang yang gampang emosi?",
+          "expectedNumbers": ["6116", "6114"],
+          "reason": "6116 advises against anger; 6114 explicitly describes strength as self-control while angry. Narratives that merely mention someone becoming angry do not suffice.",
+          "expectedDatabaseIds": [
+            "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+            "66566e1a-0530-4a87-b50e-52d16c37b159"
+          ],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 741.2471000000005,
+          "totalCandidates": 16,
+          "results": [
+            {
+              "id": "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+              "hadithNumber": "6116",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "48528cb4-da28-4bb6-845b-b99c17e0465e",
+              "hadithNumber": "6048",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2a4c099d-2563-4950-b7ac-4759b4f37293",
+              "hadithNumber": "6113",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "71889017-5c02-4804-89b2-272f004896a4",
+              "hadithNumber": "6078",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "66566e1a-0530-4a87-b50e-52d16c37b159",
+              "hadithNumber": "6114",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "75ec51ca-a72d-450e-b5a1-fc6d52426ece",
+              "hadithNumber": "6126",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "1bbda95c-c79a-4229-9ff8-d01283f6f593",
+              "hadithNumber": "91",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "675e6791-b036-4bee-aa2f-b81192d2081b",
+              "hadithNumber": "6115",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "94c4e71b-f668-404a-8d73-18bb2bc29f3a",
+              "hadithNumber": "6208",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c42ffb15-59a2-42f3-82e7-ea0ebd480703",
+              "hadithNumber": "6112",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P06",
+          "query": "Saya ingin tahu hadits tentang menahan amarah.",
+          "expectedNumbers": ["6116", "6114"],
+          "reason": "6114 explicitly concerns self-control while angry; 6116 is advice against anger. Both address the intent beyond shared words.",
+          "expectedDatabaseIds": [
+            "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+            "66566e1a-0530-4a87-b50e-52d16c37b159"
+          ],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 969.5652000000009,
+          "totalCandidates": 23,
+          "results": [
+            {
+              "id": "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+              "hadithNumber": "6116",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "66566e1a-0530-4a87-b50e-52d16c37b159",
+              "hadithNumber": "6114",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "057a3ef1-7222-4731-8749-d98061bcb16f",
+              "hadithNumber": "6223",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "0ca9ef98-8aa8-405b-9da8-cd94b51cc94c",
+              "hadithNumber": "5400",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c34da8a5-ef17-46ae-a02e-b55c69714184",
+              "hadithNumber": "6226",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8c98df32-b125-4877-a14a-6748a213a56a",
+              "hadithNumber": "6022",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4acbf1ad-d088-42e5-8d05-24a3d632cb54",
+              "hadithNumber": "79",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c2fdc105-6e43-4aa0-94f1-3936dd124120",
+              "hadithNumber": "6093",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "94c4e71b-f668-404a-8d73-18bb2bc29f3a",
+              "hadithNumber": "6208",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c08f4668-91af-4baa-937f-1ba1ed159ae8",
+              "hadithNumber": "5401",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P07",
+          "query": "Kenapa kita harus mendahulukan ibu daripada ayah?",
+          "expectedNumbers": ["5971"],
+          "reason": "User anchor 5971 explicitly orders the mother before the father; search returns the source rather than generating an explanation.",
+          "expectedDatabaseIds": ["24de91ef-ae3e-4c01-911d-f23808785e0b"],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 750.3685000000005,
+          "totalCandidates": 30,
+          "results": [
+            {
+              "id": "e0c0f403-5507-4255-beee-b1a7bd7b19ee",
+              "hadithNumber": "6184",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2d98d457-1b36-442f-8be8-214907bdd39f",
+              "hadithNumber": "5973",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "24de91ef-ae3e-4c01-911d-f23808785e0b",
+              "hadithNumber": "5971",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "01017ac1-57b1-4ba6-a38a-d721cb9349d4",
+              "hadithNumber": "5383",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "7b17962c-b4b2-48d5-bec1-d70e27df88ca",
+              "hadithNumber": "6193",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "766868fc-b4d8-4166-ae82-3460efb1ecb4",
+              "hadithNumber": "6166",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "659db89a-0b34-44fa-b71d-e4d88270772d",
+              "hadithNumber": "6085",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "b09cf94d-96e3-492d-9359-bdcd62222829",
+              "hadithNumber": "5978",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "89ddacd7-c096-43ca-93b3-7ef7790e55b6",
+              "hadithNumber": "6002",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "e079207e-4674-4c43-b7a6-0e3394a3177d",
+              "hadithNumber": "6190",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P08",
+          "query": "Ada hadits tentang berbakti kepada orang tua?",
+          "expectedNumbers": ["5971", "5970", "5974", "5976"],
+          "reason": "5970 explicitly commands good conduct toward parents; 5971 prioritizes mother then father; 5974 narrates prioritizing care of elderly parents; 5976 warns against disobedience. 6079 mentions parents in a migration story, and 6127 means an elderly person: neither answers filial conduct.",
+          "expectedDatabaseIds": [
+            "24de91ef-ae3e-4c01-911d-f23808785e0b",
+            "af5dd723-54e3-4bcb-aa26-c5d77b63e616",
+            "652b98b4-a996-4274-aa30-93a4c9e63ef3",
+            "383c2229-1946-423b-b17d-66c5029f1d3f"
+          ],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 1811.6684999999998,
+          "totalCandidates": 17,
+          "results": [
+            {
+              "id": "af5dd723-54e3-4bcb-aa26-c5d77b63e616",
+              "hadithNumber": "5970",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "190ea785-97f0-4ab7-8934-33f87a2aae3f",
+              "hadithNumber": "5972",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "835c1e33-39bd-452d-a3e0-d8ee2d93718c",
+              "hadithNumber": "5975",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2d98d457-1b36-442f-8be8-214907bdd39f",
+              "hadithNumber": "5973",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "09ebefee-bf40-4236-9198-8639df5d00a8",
+              "hadithNumber": "6091",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "383c2229-1946-423b-b17d-66c5029f1d3f",
+              "hadithNumber": "5976",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "c1f6ddaf-9aaa-4648-b2a2-ef94b3718f6c",
+              "hadithNumber": "5977",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ddc99356-a596-4e62-a01e-15ce1d9e0905",
+              "hadithNumber": "6079",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9264bc2e-8f15-4fd9-a0f5-b8bb4a3cd8ab",
+              "hadithNumber": "6127",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "652b98b4-a996-4274-aa30-93a4c9e63ef3",
+              "hadithNumber": "5974",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            }
+          ]
+        },
+        {
+          "id": "P09",
+          "query": "Apakah amal seseorang tergantung niatnya?",
+          "expectedNumbers": ["1"],
+          "reason": "Pinned Indonesian record 1 explicitly connects actions and intention. No inference from collection title or a shared word alone.",
+          "expectedDatabaseIds": ["1302a210-ecc8-40a7-80a9-4f83a7866b2a"],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 1472.8597999999984,
+          "totalCandidates": 4,
+          "results": [
+            {
+              "id": "1302a210-ecc8-40a7-80a9-4f83a7866b2a",
+              "hadithNumber": "1",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "f8f9518a-0d50-4099-9299-0f6ba19a0253",
+              "hadithNumber": "1396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "0a915b15-659c-470f-bb49-8bd35b1be623",
+              "hadithNumber": "1397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "652b98b4-a996-4274-aa30-93a4c9e63ef3",
+              "hadithNumber": "5974",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P10",
+          "query": "Apa nasihat Nabi tentang menjaga ucapan?",
+          "expectedNumbers": ["6018", "6019", "6135", "6136"],
+          "reason": "6018, 6019, 6135 and 6136 explicitly advise good speech or silence. 7 has incidental speech in a long historical dialogue, not advice about guarding speech.",
+          "expectedDatabaseIds": [
+            "f0a5b59e-3d9e-40a7-8f5a-aed7b38e3ca0",
+            "545a67b1-9658-4c59-aee8-69d178895c4a",
+            "1b604c73-8948-4f54-9ddd-527a12c571b8",
+            "280afeb3-e6fd-41a6-8cfb-534a0af2ea77"
+          ],
+          "modeUsed": "lexical",
+          "fallbackReason": null,
+          "latencyMs": 1569.8685000000005,
+          "totalCandidates": 23,
+          "results": [
+            {
+              "id": "1b604c73-8948-4f54-9ddd-527a12c571b8",
+              "hadithNumber": "6135",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "545a67b1-9658-4c59-aee8-69d178895c4a",
+              "hadithNumber": "6019",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "f0a5b59e-3d9e-40a7-8f5a-aed7b38e3ca0",
+              "hadithNumber": "6018",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "280afeb3-e6fd-41a6-8cfb-534a0af2ea77",
+              "hadithNumber": "6136",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "38671ead-08bf-4f22-9c80-de040de1464e",
+              "hadithNumber": "6138",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "871ff173-8ecb-4a45-9020-5e4ace181be4",
+              "hadithNumber": "6098",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "5d53d57d-e79b-4083-a6e7-683ad1afe4a2",
+              "hadithNumber": "6120",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "a0171fda-c0ec-410c-a216-b40b06ed18e0",
+              "hadithNumber": "6028",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "477f858d-b781-494e-ac13-fd8124dc1565",
+              "hadithNumber": "6064",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2305ffcd-2648-4fc3-9923-88f803f2671d",
+              "hadithNumber": "6219",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requestedMode": "hybrid",
+      "observedModes": ["lexical_fallback"],
+      "metrics": {
+        "queryCount": 10,
+        "positiveJudgedQueries": 10,
+        "noResultJudgedQueries": 0,
+        "precisionAt5": 0.3,
+        "mrrAt10": 0.9333333333333332,
+        "hitRateAt5": 1,
+        "zeroResultRate": 0,
+        "noResultAccuracy": null,
+        "latencyMs": {
+          "p50": 1840.5078000000067,
+          "p95": 12555.993699999995
+        }
+      },
+      "cases": [
+        {
+          "id": "P01",
+          "query": "Kalau makan menurut sunnah sebaiknya pakai tangan apa?",
+          "expectedNumbers": ["5376"],
+          "reason": "User anchor 5376: includes right hand instruction for eating, not merely the word tangan.",
+          "expectedDatabaseIds": ["479d5fd9-2267-4cc3-95b7-dc8045b404d1"],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 12555.993699999995,
+          "totalCandidates": 69,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "b69286db-d804-4a8b-a036-25125d9a0287",
+              "hadithNumber": "1410",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "b7997a6e-f253-40fc-805a-db7f9ff40cb5",
+              "hadithNumber": "5377",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "6d45ebfa-e8ae-40ca-82ed-e50b66e79a08",
+              "hadithNumber": "5398",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "3f67e731-27e7-4c26-b890-43d733017370",
+              "hadithNumber": "5399",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4ca32497-7993-466a-837b-2446b9df7b55",
+              "hadithNumber": "5386",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ec792553-9940-48fe-81e9-dce3acd46a69",
+              "hadithNumber": "5396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8fbc2ec1-778e-4eee-86c4-bfff56512064",
+              "hadithNumber": "5440",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P02",
+          "query": "Saya mau tahu hadits tentang makan dengan tangan kanan.",
+          "expectedNumbers": ["5376"],
+          "reason": "User anchor 5376 directly describes eating with the right hand.",
+          "expectedDatabaseIds": ["479d5fd9-2267-4cc3-95b7-dc8045b404d1"],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 2150.200499999999,
+          "totalCandidates": 68,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "b7997a6e-f253-40fc-805a-db7f9ff40cb5",
+              "hadithNumber": "5377",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "6d45ebfa-e8ae-40ca-82ed-e50b66e79a08",
+              "hadithNumber": "5398",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "3f67e731-27e7-4c26-b890-43d733017370",
+              "hadithNumber": "5399",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4ca32497-7993-466a-837b-2446b9df7b55",
+              "hadithNumber": "5386",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ec792553-9940-48fe-81e9-dce3acd46a69",
+              "hadithNumber": "5396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8fbc2ec1-778e-4eee-86c4-bfff56512064",
+              "hadithNumber": "5440",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c5d80055-6c1e-4c3b-8535-547fddb5d12e",
+              "hadithNumber": "5415",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P03",
+          "query": "Kalau makan bareng, boleh ambil lauk yang jauh dari kita?",
+          "expectedNumbers": ["5376", "5377"],
+          "reason": "5376 and 5377 direct eating from the food in front of the person. 5446 concerns paired dates and permission, only adjacent context, not the spatial question.",
+          "expectedDatabaseIds": [
+            "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+            "b7997a6e-f253-40fc-805a-db7f9ff40cb5"
+          ],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 3323.743699999999,
+          "totalCandidates": 214,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "6e37c6c3-7df2-4353-9747-02cdaf9d3509",
+              "hadithNumber": "5446",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "94108488-3e68-4bef-91ec-0443a9d6e240",
+              "hadithNumber": "6111",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "e3a936f6-615f-4a2a-9961-9b78bd8f49f9",
+              "hadithNumber": "6150",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "5eae3af8-1da6-4ed6-827e-1a4d5ade4bc5",
+              "hadithNumber": "1413",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8f8c5456-c1cf-481a-a4ab-19b6a1fd45e5",
+              "hadithNumber": "6191",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "d59f699b-a969-4e63-a8ce-5ddd8f751fb1",
+              "hadithNumber": "5435",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8b29b73c-5096-47bd-807a-3862a6f558a4",
+              "hadithNumber": "7",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P04",
+          "query": "Apakah ada anjuran membaca bismillah sebelum makan?",
+          "expectedNumbers": ["5376"],
+          "reason": "5376 includes the instruction to mention the name of Allah before eating; source spelling retained.",
+          "expectedDatabaseIds": ["479d5fd9-2267-4cc3-95b7-dc8045b404d1"],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 4759.515699999996,
+          "totalCandidates": 87,
+          "results": [
+            {
+              "id": "479d5fd9-2267-4cc3-95b7-dc8045b404d1",
+              "hadithNumber": "5376",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "bbbd78eb-0c4c-4864-ae4f-e6ce0dc6bd53",
+              "hadithNumber": "5378",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "714b872e-2e6f-43a9-b0f3-2e80d7b384a4",
+              "hadithNumber": "5458",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "b7997a6e-f253-40fc-805a-db7f9ff40cb5",
+              "hadithNumber": "5377",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "6d45ebfa-e8ae-40ca-82ed-e50b66e79a08",
+              "hadithNumber": "5398",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "3f67e731-27e7-4c26-b890-43d733017370",
+              "hadithNumber": "5399",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4ca32497-7993-466a-837b-2446b9df7b55",
+              "hadithNumber": "5386",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ec792553-9940-48fe-81e9-dce3acd46a69",
+              "hadithNumber": "5396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "fffcc0dc-b103-4e2a-b4ee-f0cd2d926768",
+              "hadithNumber": "5397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9105972d-8a8a-45b1-9b3e-17d39294ab77",
+              "hadithNumber": "5456",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P05",
+          "query": "Bagaimana nasihat Rasulullah buat orang yang gampang emosi?",
+          "expectedNumbers": ["6116", "6114"],
+          "reason": "6116 advises against anger; 6114 explicitly describes strength as self-control while angry. Narratives that merely mention someone becoming angry do not suffice.",
+          "expectedDatabaseIds": [
+            "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+            "66566e1a-0530-4a87-b50e-52d16c37b159"
+          ],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 2511.3496000000014,
+          "totalCandidates": 16,
+          "results": [
+            {
+              "id": "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+              "hadithNumber": "6116",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "48528cb4-da28-4bb6-845b-b99c17e0465e",
+              "hadithNumber": "6048",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2a4c099d-2563-4950-b7ac-4759b4f37293",
+              "hadithNumber": "6113",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "71889017-5c02-4804-89b2-272f004896a4",
+              "hadithNumber": "6078",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "66566e1a-0530-4a87-b50e-52d16c37b159",
+              "hadithNumber": "6114",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "75ec51ca-a72d-450e-b5a1-fc6d52426ece",
+              "hadithNumber": "6126",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "1bbda95c-c79a-4229-9ff8-d01283f6f593",
+              "hadithNumber": "91",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "675e6791-b036-4bee-aa2f-b81192d2081b",
+              "hadithNumber": "6115",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "94c4e71b-f668-404a-8d73-18bb2bc29f3a",
+              "hadithNumber": "6208",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c42ffb15-59a2-42f3-82e7-ea0ebd480703",
+              "hadithNumber": "6112",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P06",
+          "query": "Saya ingin tahu hadits tentang menahan amarah.",
+          "expectedNumbers": ["6116", "6114"],
+          "reason": "6114 explicitly concerns self-control while angry; 6116 is advice against anger. Both address the intent beyond shared words.",
+          "expectedDatabaseIds": [
+            "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+            "66566e1a-0530-4a87-b50e-52d16c37b159"
+          ],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 1773.8953000000038,
+          "totalCandidates": 23,
+          "results": [
+            {
+              "id": "9d2bb6c0-99b5-4d59-a0b4-1aa1d887b80b",
+              "hadithNumber": "6116",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "66566e1a-0530-4a87-b50e-52d16c37b159",
+              "hadithNumber": "6114",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "057a3ef1-7222-4731-8749-d98061bcb16f",
+              "hadithNumber": "6223",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "0ca9ef98-8aa8-405b-9da8-cd94b51cc94c",
+              "hadithNumber": "5400",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c34da8a5-ef17-46ae-a02e-b55c69714184",
+              "hadithNumber": "6226",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "8c98df32-b125-4877-a14a-6748a213a56a",
+              "hadithNumber": "6022",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "4acbf1ad-d088-42e5-8d05-24a3d632cb54",
+              "hadithNumber": "79",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c2fdc105-6e43-4aa0-94f1-3936dd124120",
+              "hadithNumber": "6093",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "94c4e71b-f668-404a-8d73-18bb2bc29f3a",
+              "hadithNumber": "6208",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "c08f4668-91af-4baa-937f-1ba1ed159ae8",
+              "hadithNumber": "5401",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P07",
+          "query": "Kenapa kita harus mendahulukan ibu daripada ayah?",
+          "expectedNumbers": ["5971"],
+          "reason": "User anchor 5971 explicitly orders the mother before the father; search returns the source rather than generating an explanation.",
+          "expectedDatabaseIds": ["24de91ef-ae3e-4c01-911d-f23808785e0b"],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 1840.5078000000067,
+          "totalCandidates": 30,
+          "results": [
+            {
+              "id": "e0c0f403-5507-4255-beee-b1a7bd7b19ee",
+              "hadithNumber": "6184",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2d98d457-1b36-442f-8be8-214907bdd39f",
+              "hadithNumber": "5973",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "24de91ef-ae3e-4c01-911d-f23808785e0b",
+              "hadithNumber": "5971",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "01017ac1-57b1-4ba6-a38a-d721cb9349d4",
+              "hadithNumber": "5383",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "7b17962c-b4b2-48d5-bec1-d70e27df88ca",
+              "hadithNumber": "6193",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "766868fc-b4d8-4166-ae82-3460efb1ecb4",
+              "hadithNumber": "6166",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "659db89a-0b34-44fa-b71d-e4d88270772d",
+              "hadithNumber": "6085",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "b09cf94d-96e3-492d-9359-bdcd62222829",
+              "hadithNumber": "5978",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "89ddacd7-c096-43ca-93b3-7ef7790e55b6",
+              "hadithNumber": "6002",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "e079207e-4674-4c43-b7a6-0e3394a3177d",
+              "hadithNumber": "6190",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P08",
+          "query": "Ada hadits tentang berbakti kepada orang tua?",
+          "expectedNumbers": ["5971", "5970", "5974", "5976"],
+          "reason": "5970 explicitly commands good conduct toward parents; 5971 prioritizes mother then father; 5974 narrates prioritizing care of elderly parents; 5976 warns against disobedience. 6079 mentions parents in a migration story, and 6127 means an elderly person: neither answers filial conduct.",
+          "expectedDatabaseIds": [
+            "24de91ef-ae3e-4c01-911d-f23808785e0b",
+            "af5dd723-54e3-4bcb-aa26-c5d77b63e616",
+            "652b98b4-a996-4274-aa30-93a4c9e63ef3",
+            "383c2229-1946-423b-b17d-66c5029f1d3f"
+          ],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 1198.6521999999968,
+          "totalCandidates": 17,
+          "results": [
+            {
+              "id": "af5dd723-54e3-4bcb-aa26-c5d77b63e616",
+              "hadithNumber": "5970",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "190ea785-97f0-4ab7-8934-33f87a2aae3f",
+              "hadithNumber": "5972",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "835c1e33-39bd-452d-a3e0-d8ee2d93718c",
+              "hadithNumber": "5975",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2d98d457-1b36-442f-8be8-214907bdd39f",
+              "hadithNumber": "5973",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "09ebefee-bf40-4236-9198-8639df5d00a8",
+              "hadithNumber": "6091",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "383c2229-1946-423b-b17d-66c5029f1d3f",
+              "hadithNumber": "5976",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "c1f6ddaf-9aaa-4648-b2a2-ef94b3718f6c",
+              "hadithNumber": "5977",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "ddc99356-a596-4e62-a01e-15ce1d9e0905",
+              "hadithNumber": "6079",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "9264bc2e-8f15-4fd9-a0f5-b8bb4a3cd8ab",
+              "hadithNumber": "6127",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "652b98b4-a996-4274-aa30-93a4c9e63ef3",
+              "hadithNumber": "5974",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            }
+          ]
+        },
+        {
+          "id": "P09",
+          "query": "Apakah amal seseorang tergantung niatnya?",
+          "expectedNumbers": ["1"],
+          "reason": "Pinned Indonesian record 1 explicitly connects actions and intention. No inference from collection title or a shared word alone.",
+          "expectedDatabaseIds": ["1302a210-ecc8-40a7-80a9-4f83a7866b2a"],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 642.328300000001,
+          "totalCandidates": 4,
+          "results": [
+            {
+              "id": "1302a210-ecc8-40a7-80a9-4f83a7866b2a",
+              "hadithNumber": "1",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "f8f9518a-0d50-4099-9299-0f6ba19a0253",
+              "hadithNumber": "1396",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "0a915b15-659c-470f-bb49-8bd35b1be623",
+              "hadithNumber": "1397",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "652b98b4-a996-4274-aa30-93a4c9e63ef3",
+              "hadithNumber": "5974",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        },
+        {
+          "id": "P10",
+          "query": "Apa nasihat Nabi tentang menjaga ucapan?",
+          "expectedNumbers": ["6018", "6019", "6135", "6136"],
+          "reason": "6018, 6019, 6135 and 6136 explicitly advise good speech or silence. 7 has incidental speech in a long historical dialogue, not advice about guarding speech.",
+          "expectedDatabaseIds": [
+            "f0a5b59e-3d9e-40a7-8f5a-aed7b38e3ca0",
+            "545a67b1-9658-4c59-aee8-69d178895c4a",
+            "1b604c73-8948-4f54-9ddd-527a12c571b8",
+            "280afeb3-e6fd-41a6-8cfb-534a0af2ea77"
+          ],
+          "modeUsed": "lexical_fallback",
+          "fallbackReason": "INDEX_NOT_READY",
+          "latencyMs": 1512.0132999999987,
+          "totalCandidates": 23,
+          "results": [
+            {
+              "id": "1b604c73-8948-4f54-9ddd-527a12c571b8",
+              "hadithNumber": "6135",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "545a67b1-9658-4c59-aee8-69d178895c4a",
+              "hadithNumber": "6019",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "f0a5b59e-3d9e-40a7-8f5a-aed7b38e3ca0",
+              "hadithNumber": "6018",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "280afeb3-e6fd-41a6-8cfb-534a0af2ea77",
+              "hadithNumber": "6136",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "relevant_anchor"
+            },
+            {
+              "id": "38671ead-08bf-4f22-9c80-de040de1464e",
+              "hadithNumber": "6138",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "871ff173-8ecb-4a45-9020-5e4ace181be4",
+              "hadithNumber": "6098",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "5d53d57d-e79b-4083-a6e7-683ad1afe4a2",
+              "hadithNumber": "6120",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "a0171fda-c0ec-410c-a216-b40b06ed18e0",
+              "hadithNumber": "6028",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "477f858d-b781-494e-ac13-fd8124dc1565",
+              "hadithNumber": "6064",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            },
+            {
+              "id": "2305ffcd-2648-4fc3-9923-88f803f2671d",
+              "hadithNumber": "6219",
+              "isVerified": false,
+              "isResearchOnly": true,
+              "grade": null,
+              "judgment": "unjudged"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "finalAudit": {
+    "createdAt": "2026-10-17T05:14:29.617Z",
+    "counts": {
+      "local_pilot": 404,
+      "published": 0,
+      "approved_sources": 0,
+      "embeddings": 0
+    },
+    "originalPairsChecked": 404,
+    "originalPairsMatching": 404,
+    "failures": [],
+    "health": {
+      "status": "ok",
+      "mode": "lexical",
+      "databaseConfigured": true,
+      "dataScope": "local_pilot"
+    },
+    "apiStatus": 200,
+    "webStatus": 200,
+    "cors": "http://localhost:3000",
+    "cacheControl": "no-store"
+  }
+}

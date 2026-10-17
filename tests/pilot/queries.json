@@ -1,0 +1,66 @@
+{
+  "kind": "REAL_LOCAL_RESEARCH_PILOT",
+  "judgmentMethod": "Manual reading by the coding agent of the pinned Indonesian source and the three user-specified anchors. Explicit content reasons per query; not automatic word-overlap labels, not independent human/scholarly verification. Additional retrieved results remain unjudged. These ten queries also guided lexical tuning, so this is a development pilot, not a held-out benchmark. Precision is a judged-positive lower bound; no exhaustive Recall.",
+  "cases": [
+    {
+      "id": "P01",
+      "query": "Kalau makan menurut sunnah sebaiknya pakai tangan apa?",
+      "expectedNumbers": ["5376"],
+      "reason": "User anchor 5376: includes right hand instruction for eating, not merely the word tangan."
+    },
+    {
+      "id": "P02",
+      "query": "Saya mau tahu hadits tentang makan dengan tangan kanan.",
+      "expectedNumbers": ["5376"],
+      "reason": "User anchor 5376 directly describes eating with the right hand."
+    },
+    {
+      "id": "P03",
+      "query": "Kalau makan bareng, boleh ambil lauk yang jauh dari kita?",
+      "expectedNumbers": ["5376", "5377"],
+      "reason": "5376 and 5377 direct eating from the food in front of the person. 5446 concerns paired dates and permission, only adjacent context, not the spatial question."
+    },
+    {
+      "id": "P04",
+      "query": "Apakah ada anjuran membaca bismillah sebelum makan?",
+      "expectedNumbers": ["5376"],
+      "reason": "5376 includes the instruction to mention the name of Allah before eating; source spelling retained."
+    },
+    {
+      "id": "P05",
+      "query": "Bagaimana nasihat Rasulullah buat orang yang gampang emosi?",
+      "expectedNumbers": ["6116", "6114"],
+      "reason": "6116 advises against anger; 6114 explicitly describes strength as self-control while angry. Narratives that merely mention someone becoming angry do not suffice."
+    },
+    {
+      "id": "P06",
+      "query": "Saya ingin tahu hadits tentang menahan amarah.",
+      "expectedNumbers": ["6116", "6114"],
+      "reason": "6114 explicitly concerns self-control while angry; 6116 is advice against anger. Both address the intent beyond shared words."
+    },
+    {
+      "id": "P07",
+      "query": "Kenapa kita harus mendahulukan ibu daripada ayah?",
+      "expectedNumbers": ["5971"],
+      "reason": "User anchor 5971 explicitly orders the mother before the father; search returns the source rather than generating an explanation."
+    },
+    {
+      "id": "P08",
+      "query": "Ada hadits tentang berbakti kepada orang tua?",
+      "expectedNumbers": ["5971", "5970", "5974", "5976"],
+      "reason": "5970 explicitly commands good conduct toward parents; 5971 prioritizes mother then father; 5974 narrates prioritizing care of elderly parents; 5976 warns against disobedience. 6079 mentions parents in a migration story, and 6127 means an elderly person: neither answers filial conduct."
+    },
+    {
+      "id": "P09",
+      "query": "Apakah amal seseorang tergantung niatnya?",
+      "expectedNumbers": ["1"],
+      "reason": "Pinned Indonesian record 1 explicitly connects actions and intention. No inference from collection title or a shared word alone."
+    },
+    {
+      "id": "P10",
+      "query": "Apa nasihat Nabi tentang menjaga ucapan?",
+      "expectedNumbers": ["6018", "6019", "6135", "6136"],
+      "reason": "6018, 6019, 6135 and 6136 explicitly advise good speech or silence. 7 has incidental speech in a long historical dialogue, not advice about guarding speech."
+    }
+  ]
+}

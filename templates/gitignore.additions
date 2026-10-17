@@ -1,0 +1,11 @@
+# add to project .gitignore
+node_modules/
+.next/
+dist/
+out/
+coverage/
+.env
+.env.*
+!.env.example
+!.env.local.example
+*.log

@@ -1,0 +1,34 @@
+{
+  "data": {
+    "query": "menuntut ilmu",
+    "results": [
+      {
+        "id": "mock-knowledge-1",
+        "title": "Menuntut ilmu",
+        "excerpt": "Data simulasi untuk topik menuntut ilmu. Teks ini hanya menjelaskan contoh hasil antarmuka dan bukan kutipan atau penjelasan hadits.",
+        "citation": {
+          "collection": "Koleksi simulasi A",
+          "number": "MOCK",
+          "numberingScheme": "mock"
+        },
+        "collection": "Koleksi simulasi A",
+        "sourceSlug": "mock-a",
+        "hadithNumber": null,
+        "arabicText": null,
+        "translation": null,
+        "grade": null,
+        "sourceUrl": null,
+        "referenceUrl": null,
+        "isVerified": false
+      }
+    ],
+    "totalCandidates": 2
+  },
+  "meta": {
+    "page": 1,
+    "limit": 1,
+    "hasMore": true,
+    "modeUsed": "mock",
+    "requestId": "example-request"
+  }
+}

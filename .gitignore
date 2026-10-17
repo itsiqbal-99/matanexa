@@ -1,0 +1,17 @@
+node_modules/
+.next/
+dist/
+out/
+coverage/
+.tools/
+.env
+.env.*
+!.env.example
+!.env.local.example
+*.log
+*.tsbuildinfo
+.superdesign/tmp/
+test-results/
+playwright-report/
+artifacts/
+data/

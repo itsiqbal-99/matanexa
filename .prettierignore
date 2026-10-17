@@ -1,0 +1,6 @@
+node_modules
+.next
+dist
+.tools
+package-lock.json
+apps/web/next-env.d.ts
