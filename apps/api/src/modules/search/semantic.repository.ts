@@ -3,7 +3,7 @@ import { DatabaseService } from '../../database/database.service';
 import { CorpusAccess } from '../../database/corpus-access';
 import type { HadithRow } from '../hadiths/hadith.repository';
 import { HADITH_RESULT_FIELDS } from '../hadiths/hadith.repository';
-import { EMBEDDING_MODEL } from '../../providers/embedding/cloudflare-embedding';
+import { ACTIVE_EMBEDDING_MODEL } from '../../providers/embedding/embedding-provider';
 @Injectable()
 export class SemanticRepository {
   constructor(
@@ -15,7 +15,7 @@ export class SemanticRepository {
       `SELECT EXISTS(SELECT 1 FROM ${this.corpus.relation} h
       JOIN hadith_embeddings e ON e.hadith_id=h.id AND e.content_hash=h.content_hash AND e.model=$1
       WHERE ($2::text[] IS NULL OR h.source_slug=ANY($2))) AS ready`,
-      [EMBEDDING_MODEL, sourceSlugs?.length ? sourceSlugs : null],
+      [ACTIVE_EMBEDDING_MODEL, sourceSlugs?.length ? sourceSlugs : null],
     );
     return row?.ready === true;
   }
@@ -28,7 +28,7 @@ export class SemanticRepository {
       ORDER BY e.embedding <=> $1::vector,h.id LIMIT 100`,
       [
         JSON.stringify(vector),
-        EMBEDDING_MODEL,
+        ACTIVE_EMBEDDING_MODEL,
         sourceSlugs?.length ? sourceSlugs : null,
       ],
     );

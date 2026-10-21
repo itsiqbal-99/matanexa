@@ -7,8 +7,8 @@ import { CorpusAccess } from './corpus-access';
 import {
   CloudflareEmbedding,
   EmbeddingUnavailable,
-  EMBEDDING_MODEL,
 } from '../providers/embedding/cloudflare-embedding';
+import { ACTIVE_EMBEDDING_MODEL } from '../providers/embedding/embedding-provider';
 async function main() {
   config({ quiet: true });
   const env = readEnvironment(process.env),
@@ -30,7 +30,7 @@ async function main() {
   const report = {
     createdAt: new Date().toISOString(),
     scope: env.dataScope,
-    model: EMBEDDING_MODEL,
+    model: ACTIVE_EMBEDDING_MODEL,
     eligible: 0,
     alreadyIndexed: 0,
     pendingAtStart: 0,
@@ -55,7 +55,7 @@ async function main() {
     }>(
       `SELECT h.id,h.indonesian_text,h.content_hash FROM ${corpus.relation} h
     LEFT JOIN hadith_embeddings e ON e.hadith_id=h.id AND e.model=$1 AND e.content_hash=h.content_hash WHERE e.hadith_id IS NULL ORDER BY h.id LIMIT 500`,
-      [EMBEDDING_MODEL],
+      [ACTIVE_EMBEDDING_MODEL],
     );
     report.pendingAtStart = rows.rows.length;
     report.alreadyIndexed = report.eligible - rows.rows.length;
@@ -90,7 +90,7 @@ async function main() {
           SELECT h.id,$2,h.content_hash,x.embedding::vector FROM jsonb_to_recordset($1::jsonb) AS x(id uuid,hash text,embedding text)
           JOIN ${corpus.relation} h ON h.id=x.id AND h.content_hash=x.hash
           ON CONFLICT(hadith_id,model) DO UPDATE SET content_hash=EXCLUDED.content_hash,embedding=EXCLUDED.embedding,updated_at=now()`,
-          [JSON.stringify(payload), EMBEDDING_MODEL],
+          [JSON.stringify(payload), ACTIVE_EMBEDDING_MODEL],
         );
         if (saved.rowCount !== batch.length)
           throw new Error('SOURCE_CHANGED_DURING_INDEXING');

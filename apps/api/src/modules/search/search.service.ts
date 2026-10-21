@@ -1,15 +1,18 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Optional } from '@nestjs/common';
 import { ENVIRONMENT, type Environment } from '../../config/environment';
 import { serializeHadith } from '../hadiths/hadith.repository';
 import { randomUUID } from 'node:crypto';
+import { RequestContextService } from '../../common/request-context.service';
 import { MockRepository } from './mock.repository';
 import type { SearchDto } from './search.schema';
 import { QueryAnalyzer } from './query-analyzer';
 import { SearchRepository } from './search.repository';
 import {
-  CloudflareEmbedding,
-  EmbeddingUnavailable,
-} from '../../providers/embedding/cloudflare-embedding';
+  EMBEDDING_PROVIDER,
+  EmbeddingProviderError,
+  type EmbeddingProvider,
+} from '../../providers/embedding/embedding-provider';
+import type { ProviderCallOptions } from '../../providers/provider-contract';
 import {
   SemanticRepository,
   reciprocalRankFusion,
@@ -22,11 +25,13 @@ export class SearchService {
     private readonly searchRepository: SearchRepository,
     private readonly analyzer: QueryAnalyzer,
     @Inject(ENVIRONMENT) private readonly env: Environment,
-    private readonly embedding: CloudflareEmbedding,
+    @Inject(EMBEDDING_PROVIDER)
+    private readonly embedding: EmbeddingProvider,
     private readonly semantic: SemanticRepository,
+    @Optional() private readonly requestContext?: RequestContextService,
   ) {}
 
-  async search(dto: SearchDto) {
+  async search(dto: SearchDto, options: ProviderCallOptions = {}) {
     const offset = (dto.page - 1) * dto.limit;
     const analysis =
       this.env.mode !== 'mock' ? this.analyzer.analyze(dto.query) : null;
@@ -52,7 +57,7 @@ export class SearchService {
         // Lexical retrieval and the remote embedding are independent. Handle the
         // provider rejection immediately so no unhandled promise can leak errors.
         const embeddingRequest = this.embedding
-          .embed([analysis.normalized])
+          .embed([analysis.normalized], options)
           .then((vectors) => ({
             vectors,
             reason: undefined as string | undefined,
@@ -60,7 +65,7 @@ export class SearchService {
           .catch((error: unknown) => ({
             vectors: undefined,
             reason:
-              error instanceof EmbeddingUnavailable
+              error instanceof EmbeddingProviderError
                 ? error.code
                 : 'EMBEDDING_UNAVAILABLE',
           }));
@@ -115,7 +120,7 @@ export class SearchService {
           ? { dataScope: 'local_pilot' as const }
           : {}),
         ...(fallbackReason ? { fallbackReason } : {}),
-        requestId: randomUUID(),
+        requestId: this.requestContext?.currentRequestId() ?? randomUUID(),
         ...(analysis
           ? {
               queryStatus: analysis.ambiguous

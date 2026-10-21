@@ -1,6 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { readFile } = require('node:fs/promises');
+const { existsSync } = require('node:fs');
 const { resolve } = require('node:path');
 const http = require('node:http');
 require('dotenv').config({ quiet: true });
@@ -9,71 +10,82 @@ const { createPool } = require('../dist/database/connection');
 const { importDataset } = require('../dist/database/importer');
 const { preparePilot } = require('../dist/database/pilot');
 
-test('REAL SOURCE: array order is irrelevant; mismatched, empty and duplicated identities are rejected', async () => {
-  const dir = resolve(__dirname, '../../../data/local-pilot/fawaz/raw');
-  const arabic = JSON.parse(
-    await readFile(resolve(dir, 'ara-bukhari.json'), 'utf8'),
-  );
-  const indonesian = JSON.parse(
-    await readFile(resolve(dir, 'ind-bukhari.json'), 'utf8'),
-  );
-  const baseline = preparePilot(
-    JSON.stringify(arabic),
-    JSON.stringify(indonesian),
-  );
-  indonesian.hadiths.reverse();
-  const reversed = preparePilot(
-    JSON.stringify(arabic),
-    JSON.stringify(indonesian),
-  );
-  // Selection includes a bounded knowledge/zakat sample, so compare the anchor
-  // identity/pair rather than assuming the whole sample ignores selection order.
-  for (const n of ['5376', '5971', '6116']) {
-    const a = baseline.dataset.records.find((r) => r.hadithNumber === n);
-    const b = reversed.dataset.records.find((r) => r.hadithNumber === n);
-    assert.equal(b.arabicText, a.arabicText);
-    assert.equal(b.indonesianText, a.indonesianText);
-  }
-  arabic.hadiths.find((r) => String(r.hadithnumber) === '5377').reference.book =
-    999;
-  indonesian.hadiths.find((r) => String(r.hadithnumber) === '5398').text = '';
-  arabic.hadiths.push(
-    arabic.hadiths.find((r) => String(r.hadithnumber) === '5399'),
-  );
-  const rejected = preparePilot(
-    JSON.stringify(arabic),
-    JSON.stringify(indonesian),
-  ).report.rejected;
-  assert.equal(
-    rejected.find((r) => r.number === '5377').reason,
-    'REFERENCE_METADATA_MISMATCH',
-  );
-  assert.equal(
-    rejected.find((r) => r.number === '5398').reason,
-    'EMPTY_OR_INVALID_LANGUAGE_TEXT',
-  );
-  assert.equal(
-    rejected.find((r) => r.number === '5399').reason,
-    'MISSING_OR_AMBIGUOUS_IDENTITY',
-  );
-});
+const rawPilotDir = resolve(__dirname, '../../../data/local-pilot/fawaz/raw');
+const arabicSourcePath = resolve(rawPilotDir, 'ara-bukhari.json');
+const indonesianSourcePath = resolve(rawPilotDir, 'ind-bukhari.json');
+const preparedPilotPath = resolve(
+  __dirname,
+  '../../../data/local-pilot/fawaz/pilot.json',
+);
+
+test(
+  'REAL SOURCE: array order is irrelevant; mismatched, empty and duplicated identities are rejected',
+  {
+    skip:
+      !existsSync(arabicSourcePath) || !existsSync(indonesianSourcePath)
+        ? 'Local pilot source fixtures missing'
+        : false,
+  },
+  async () => {
+    const arabic = JSON.parse(await readFile(arabicSourcePath, 'utf8'));
+    const indonesian = JSON.parse(await readFile(indonesianSourcePath, 'utf8'));
+    const baseline = preparePilot(
+      JSON.stringify(arabic),
+      JSON.stringify(indonesian),
+    );
+    indonesian.hadiths.reverse();
+    const reversed = preparePilot(
+      JSON.stringify(arabic),
+      JSON.stringify(indonesian),
+    );
+    // Selection includes a bounded knowledge/zakat sample, so compare the anchor
+    // identity/pair rather than assuming the whole sample ignores selection order.
+    for (const n of ['5376', '5971', '6116']) {
+      const a = baseline.dataset.records.find((r) => r.hadithNumber === n);
+      const b = reversed.dataset.records.find((r) => r.hadithNumber === n);
+      assert.equal(b.arabicText, a.arabicText);
+      assert.equal(b.indonesianText, a.indonesianText);
+    }
+    arabic.hadiths.find(
+      (r) => String(r.hadithnumber) === '5377',
+    ).reference.book = 999;
+    indonesian.hadiths.find((r) => String(r.hadithnumber) === '5398').text = '';
+    arabic.hadiths.push(
+      arabic.hadiths.find((r) => String(r.hadithnumber) === '5399'),
+    );
+    const rejected = preparePilot(
+      JSON.stringify(arabic),
+      JSON.stringify(indonesian),
+    ).report.rejected;
+    assert.equal(
+      rejected.find((r) => r.number === '5377').reason,
+      'REFERENCE_METADATA_MISMATCH',
+    );
+    assert.equal(
+      rejected.find((r) => r.number === '5398').reason,
+      'EMPTY_OR_INVALID_LANGUAGE_TEXT',
+    );
+    assert.equal(
+      rejected.find((r) => r.number === '5399').reason,
+      'MISSING_OR_AMBIGUOUS_IDENTITY',
+    );
+  },
+);
 
 test(
   'REAL PILOT: anchor relevance, exact source pairs, localhost gate and public isolation',
   {
-    skip: !process.env.DATABASE_URL ? 'DATABASE_URL missing' : false,
+    skip:
+      !process.env.DATABASE_URL || !existsSync(preparedPilotPath)
+        ? 'DATABASE_URL or prepared local pilot fixture missing'
+        : false,
   },
   async () => {
     const prior = { ...process.env };
     const pool = createPool(process.env.DATABASE_URL, 1, 10000);
     let app;
     try {
-      const dataset = JSON.parse(
-        await readFile(
-          resolve(__dirname, '../../../data/local-pilot/fawaz/pilot.json'),
-          'utf8',
-        ),
-      );
+      const dataset = JSON.parse(await readFile(preparedPilotPath, 'utf8'));
       process.env.NODE_ENV = 'development';
       process.env.APP_DATA_SCOPE = 'local_pilot';
       process.env.APP_SEARCH_MODE = 'lexical';

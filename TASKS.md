@@ -128,3 +128,96 @@ docs/G26_HYBRID_REPORT.md dan G26_HYBRID_RESULTS.json.
 - [x] Lint, typecheck, 26 tes API dan build lulus; web build/typecheck diulang setelah koreksi CSS terakhir.
 - [x] Pemeriksaan format akhir laporan/checklist selesai.
 - **Status:** implementasi UI teruji; laporan `docs/UI_REDESIGN_REPORT.md`. Tidak ada deployment. Redesign ini tidak menyelesaikan hardening G4, izin publikasi atau sign-off G5.
+
+## vNext Phase 0 — Audit dan architecture blueprint (21 Oktober 2026)
+
+- [x] Verifikasi checkout lokal dan remote `main` pada commit `077b4a2`; audit source aktual, dependency, contracts, migrations, tests, ADR, dan reports.
+- [x] Susun architecture audit, technical-debt matrix, breaking-change analysis, dependency map, dan readiness assessment.
+- [x] Susun target modular monolith, provider/capability design, conversational engine, retrieval portability, topology, cloud-to-local strategy, migration plan, dan test strategy.
+- [x] Buat ADR-007–009 dan terima sebagai **Accepted** setelah persetujuan pengguna.
+- [x] Baseline audit: lint, typecheck, 26 unit/HTTP tests, dan production build lulus.
+- [x] Persetujuan pengguna atas blueprint dan ADR diterima sebelum perubahan Phase 1.
+- [x] `IMPLEMENTATION_REPORT.md` dibuat setelah Phase 1 dijalankan dan diverifikasi.
+- **Batas Phase 0:** tidak ada source code, dependency, database, cloud resource, billing, local model, atau deployment yang diubah. Live DB/provider test tidak dijalankan. E2E audit tidak diulang karena port 3000/4000 sedang dipakai instance pengguna hybrid/local_pilot; dua start attempt berhenti `EADDRINUSE` tanpa menghentikan proses pengguna.
+
+## vNext Phase 1 — Contract governance dan safety foundation (21 Oktober 2026)
+
+- [x] ADR-007–009 diterima; `AGENTS.md`, product scope, start guide, README, dan migration status direkonsiliasi.
+- [x] `packages/contracts` menjadi workspace murni TypeScript/Zod; v1 search types/schema dipakai web dan API.
+- [x] Kontrak konteks v2 versioned ditambahkan tanpa endpoint/runtime AI; role privileged dan metadata provider ditolak.
+- [x] Correlation ID dibuat di ingress dan konsisten pada header, success meta, serta error envelope.
+- [x] Domain error publik dinormalisasi tanpa stack/secret; privacy, retention, logging, dan provider boundary didokumentasikan.
+- [x] Contract tests 5/5 dan API unit/HTTP 26/26 lulus; lint/typecheck/build root lulus.
+- [ ] Live DB/provider dan browser E2E tidak dijalankan pada Phase 1 karena tidak ada perubahan DB/provider/UI behavior; tetap menjadi gate terpisah.
+- **Status historis saat gate ditutup:** Phase 1 selesai tanpa LLM, streaming, migration database, cloud resource, billing, local model, atau deployment. Phase 2 kemudian dikerjakan pada gate berikut.
+
+## vNext Phase 2 — AI provider abstraction dan capability foundation (21 Oktober 2026)
+
+- [x] Scope lama (embedding port) diselaraskan dengan instruksi pengguna yang menambah LLM provider foundation; ADR-008 dan migration plan diperbarui.
+- [x] `EmbeddingProvider` token/descriptor/error contract diterapkan; BGE-M3, 1024 dimensi, indexing, ranking, dan lexical fallback tetap.
+- [x] `SearchService` tidak mengimpor concrete Cloudflare adapter; binding terjadi di `ProviderModule`.
+- [x] `LlmProvider` mendukung generate, normalized stream, cancellation, timeout, capabilities, usage, dan normalized errors.
+- [x] Cloudflare REST adapter, deterministic mock LLM/embedding, serta default disabled provider diterapkan tanpa business endpoint.
+- [x] Streaming/tool/structured-output capability divalidasi fail-closed; unknown model tidak mendapat optimistic capability.
+- [x] Konfigurasi provider/model hanya dari server environment; future OpenAI-compatible hosted/loopback policy tersedia tanpa memasang local model.
+- [x] Telemetry latency/outcome/error/usage dibatasi dan tidak menyimpan raw prompt, response, header, atau secret.
+- [x] Provider contract/regression suite 35/35 API dan 5/5 shared contracts lulus; lint, typecheck, dan production build root lulus.
+- [ ] Cloudflare LLM live contract — **NOT RUN**, explicit opt-in `RUN_LIVE_CLOUDFLARE_LLM=1` tidak aktif; 1 test tercatat skipped, bukan passed.
+- **Status historis saat gate ditutup:** Phase 2 selesai tanpa perubahan API v1, database schema, corpus governance, frontend, atau deployment. Phase 3 kemudian dikerjakan pada gate berikut.
+
+## vNext Phase 3 — Retrieval tool dan evidence foundation (21 Oktober 2026)
+
+- [x] Scope migration plan diverifikasi; perluasan tool/evidence/safety dicatat di ADR-010 tanpa memindahkan conversation/tool-loop fase berikutnya.
+- [x] `RetrievalGateway` provider-neutral dan PostgreSQL adapter membungkus `SearchService`/`HadithRepository` existing tanpa menyalin ranking/SQL.
+- [x] Empat tool internal allowlisted memiliki Zod input strict, result limit, timeout, cancellation, correlation, output bound, dan normalized errors.
+- [x] Evidence contract memuat stable record ID, exact text, reference/source/provenance, status, eligibility, dan server-issued citation ID.
+- [x] Session ledger menolak duplicate, citation buatan model, record hilang/berubah, serta research-only evidence dalam public policy.
+- [x] Valid/invalid/empty/missing/duplicate/research/provider/timeout/output/correlation dan API v1 regressions teruji deterministik.
+- [x] Root lint/typecheck/build lulus; 52/52 tests lulus. Integrasi eksternal final: 2 passed, 0 failed, 5 skipped karena TEST_DATABASE_URL, fixture pilot ignored, dan opt-in live LLM tidak tersedia.
+- [x] Design, evidence contract, ADR, implementation report, limitations, dan rollback didokumentasikan.
+- [ ] Public approved+verified corpus dan external pilot/TEST_DATABASE integration lengkap — tetap blocked oleh data/credential, bukan dipenuhi fixture.
+- **Status historis saat gate ditutup:** Phase 3 implementation selesai. API v1, schema database, BGE-M3/1024, RRF/ranking, public governance, frontend, LLM activation, dan deployment tidak berubah. Phase 4 kemudian dikerjakan pada gate berikut.
+
+## vNext Phase 4 — Conversational orchestration foundation (21 Oktober 2026)
+
+- [x] Perbedaan migration plan didokumentasikan: scope UI/localStorage/mock endpoint lama ditunda, scope backend orchestration terbaru menjadi otoritas Phase 4.
+- [x] Shared conversation context/result tetap provider-independent, strict, bounded, dan hanya assistant history yang boleh membawa stable evidence record IDs.
+- [x] Internal `ConversationOrchestratorService` menghubungkan `LlmProvider` dengan `RetrievalToolExecutor`; tidak ada controller, route API v2, persistence, atau inference startup.
+- [x] Provider tanpa native tools memakai retrieval-first dan bounded LLM reformulation; provider native hanya melihat static allowlist dan semua argumen tetap divalidasi executor.
+- [x] Evidence dikumpulkan/revalidated server-side; temporary citation ID tidak dipersist, invented/stale citation ditolak, empty/provider failure memberi no-evidence/evidence-only.
+- [x] Context, timeout, tool count, output, cancellation, capability, normalized error, telemetry privacy, dan research/public isolation memiliki kontrol fail-closed.
+- [x] Single-turn, tiga-turn follow-up, reformulation, topic switch, empty, invalid/stale citation, research-only, timeout/disabled, capability, cancellation, output, dan API v1 regression teruji deterministik.
+- [x] Root lint/typecheck/build lulus; 65/65 tests lulus. Integrasi eksternal: 2 passed, 0 failed, 5 skipped karena TEST_DATABASE_URL, fixture pilot ignored, dan opt-in live LLM tidak tersedia.
+- [x] Desain, context/evidence lifecycle, ADR-011, implementation report, limitations, dan rollback didokumentasikan.
+- [ ] Semantic quality dengan model nyata dan public approved+verified corpus — **NOT RUN/blocked**; mock tidak dianggap bukti kualitas model nyata.
+- **Status historis saat gate ditutup:** Phase 4 selesai sebagai backend foundation. API v1, database schema, BGE-M3/1024, RRF/ranking, corpus governance, frontend, public AI activation, local LLM, paid service, dan deployment tidak berubah. Phase 5 kemudian dikerjakan pada gate berikut.
+
+## vNext Phase 5 — Internal conversational API dan streaming foundation (21 Oktober 2026)
+
+- [x] Roadmap direkonsiliasi: orchestration/tool foundation Phase 5–6 lama sudah maju ke Phase 4; Phase 5 baru menjadi internal API dan safe SSE transport, dicatat di ADR-012.
+- [x] Strict shared request dan enam normalized SSE event schemas menolak privileged roles, provider payload, evidence replay, temporary citation, raw vendor event, dan unknown fields.
+- [x] JSON dan SSE `/api/v2/internal/conversations/turn` memakai existing `ConversationOrchestratorService`; tidak menyalin retrieval/provider/evidence logic.
+- [x] Route default disabled, development/test-only, loopback-bound, access-key protected, constant-length timing-safe compare, dan production activation fail-closed.
+- [x] SSE mengirim orchestration status, lalu reference/text hanya setelah citation validation; delivery ditandai `buffered_validated`, bukan native provider token streaming.
+- [x] Disconnect abort, overall timeout, concurrency admission, SSE byte bound, safe errors, monotonic sequence, serta exactly-one-terminal semantics teruji.
+- [x] Valid/invalid/disabled/unauthorized, grounded/evidence-only/no-evidence, multi-turn, invalid/stale citation, research isolation, timeout/cancel/output/concurrency, dan API v1 regression teruji deterministik.
+- [x] Root lint/typecheck/build lulus; 74/74 tests lulus. Integrasi eksternal: 2 passed, 0 failed, 5 skipped karena TEST_DATABASE_URL, fixture pilot ignored, dan opt-in live LLM tidak tersedia.
+- [x] API design, streaming contract, ADR-012, implementation report, limitations, dan rollback didokumentasikan.
+- [ ] Provider-native conversational streaming, frontend reducer, real-model semantics, dan public activation — **NOT RUN/out of scope**.
+- **Status:** Phase 5 selesai sebagai internal transport foundation. API v1, database schema, ranking, BGE-M3/1024, corpus governance, frontend, public AI, local LLM, paid service, dan deployment tidak berubah. Phase 6 belum dimulai dan harus direkonsiliasi ulang.
+
+## vNext Phase 6 — Real LLM readiness dan semantic evaluation (21 Oktober 2026)
+
+- [x] Roadmap direkonsiliasi: tool-loop historis sudah dipenuhi Phase 4; Phase 6 menjadi readiness audit, offline evaluation, grounding hardening, dan live gate melalui ADR-013.
+- [x] LlmProvider, Cloudflare transport/capability/error/SSE, config/token/timeout, telemetry, orchestrator, evidence validation, dan fallback diaudit beserta risiko live yang tidak tertangkap mock.
+- [x] Empat hosted candidates didokumentasikan dengan context/pricing source snapshot; tools/structured output tidak diaktifkan hanya dari klaim katalog.
+- [x] Strict 16-case placeholder-only dataset mencakup formal/casual/slang/typo, follow-up, summary, source, topic switch, ambiguity, no evidence, fake citation, exact-text/status overclaim, research isolation, timeout/invalid/disabled provider.
+- [x] Reproducible offline runner mengukur retrieval, context, reformulation, eligibility, citation, fallback, response contract, error, latency fields, failures, usage, dan nullable cost secara terpisah.
+- [x] Exact Arabic/translation tetap server-owned; complete exact-copy dan unsupported grade/status claim gagal aman menjadi evidence-only.
+- [x] Live Cloudflare probe diperketat dengan model/config, privacy, quota/cost, synthetic-only data, request/token ceiling, credentials, dan explicit inference approval gates.
+- [x] Offline runner lulus 16/16; deterministic mock bukan bukti kualitas semantik atau performa model nyata.
+- [ ] Cloudflare LLM contract/semantic live evaluation — **NOT RUN**, berhenti pada approval gate; tidak ada live inference, research-only transmission, paid activation, atau public AI.
+- [x] Root 76/76 tests, lint final, typecheck, production builds, dan Phase 6 file formatting lulus; lint awal sempat gagal pada lima temuan runner lalu diperbaiki.
+- [ ] External DB regressions — **BLOCKED/FAIL**: 2 suite mendapat HTTP 503, 5 skipped, dan `db:check` memberi `DATABASE_OPERATION_FAILED`; bukan PASS dan tidak diganti mock.
+- [ ] Repository-wide `format:check` — gagal pada 101 file baseline di luar file Phase 6; unrelated user files tidak direformat massal.
+- **Status:** implementation/offline harness selesai dan live LLM tetap NOT RUN, tetapi acceptance penuh belum dapat ditandai karena external database regression merah. Phase 7 tidak dimulai.

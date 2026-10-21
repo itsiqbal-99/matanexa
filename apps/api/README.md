@@ -11,6 +11,27 @@ sehingga dotenv memuat `.env` lokal. Salin `.env.example` menjadi `.env`.
 - `DB_POOL_MAX`: 1–3; `DB_TIMEOUT_MS`: 100–10000, default 5000.
 - `CORS_ORIGINS`: daftar dipisahkan koma, HTTP localhost dengan port eksplisit.
   Bawaan `http://localhost:3000,http://127.0.0.1:3000`; tanpa wildcard/credentials.
+- `RETRIEVAL_TIMEOUT_MS`: 100–30000, default 10000; batas eksekusi tool internal.
+- `RETRIEVAL_MAX_OUTPUT_BYTES`: 16384–1048576, default 262144; exact evidence
+  gagal bila melebihi batas dan tidak dipotong diam-diam.
+
+Phase 3 menambah `RetrievalGateway` dan empat tool internal allowlisted untuk
+search/detail/related/validasi citation. Tidak ada route retrieval/conversation
+baru. Adapter memakai `SearchService`/`HadithRepository` existing; mock placeholder
+tidak pernah menjadi evidence dan scope public menolak research-only fail-closed.
+
+Phase 4 menambah `ConversationOrchestratorService` internal tanpa controller atau
+route baru. Konfigurasi bounds: `ORCHESTRATION_MAX_CONTEXT_CHARS` (2000–60000),
+`ORCHESTRATION_MAX_OUTPUT_BYTES` (4096–262144),
+`ORCHESTRATION_MAX_TOOL_EXECUTIONS` (2–6), dan
+`ORCHESTRATION_MAX_OUTPUT_TOKENS` (64–2048). Default LLM tetap `disabled`.
+
+Phase 5 menambah route JSON/SSE internal `/api/v2/internal/conversations` di atas
+orchestrator yang sama. Route default nonaktif, hanya boleh aktif di
+development/test, dan memerlukan `X-Matanexa-Internal-Key`. Production config
+ditolak. SSE membuffer answer/reference sampai citation gate selesai serta memberi
+label `buffered_validated`, bukan provider-native token streaming. Lihat
+`../../docs/PHASE5_API_DESIGN.md` dan `../../docs/PHASE5_STREAMING_CONTRACT.md`.
 
 `GET /api/v1/health` mengembalikan
 `{"status":"ok","mode":"mock","databaseConfigured":false}`.

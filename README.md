@@ -14,6 +14,48 @@ Redesign UI navy/cobalt, motion pencarian dan hasil validasinya:
 [docs/UI_REDESIGN_REPORT.md](docs/UI_REDESIGN_REPORT.md). Hardening G4 tetap belum
 dinyatakan selesai oleh pekerjaan UI ini.
 
+Audit dan blueprint Matanexa vNext dimulai dari
+[docs/ARCHITECTURE_AUDIT.md](docs/ARCHITECTURE_AUDIT.md) dan
+[docs/ARCHITECTURE_VNEXT.md](docs/ARCHITECTURE_VNEXT.md). Provider, percakapan,
+retrieval, deployment topology, cloud-to-local, migration, dan test strategy ada di
+dokumen `docs/*_DESIGN.md`, `docs/RETRIEVAL_PORTABILITY.md`,
+`docs/DEPLOYMENT_TOPOLOGY.md`, `docs/CLOUD_TO_LOCAL_MIGRATION.md`,
+`docs/MIGRATION_PLAN.md`, dan `docs/TEST_STRATEGY.md`. ADR-007–009 sudah
+`Accepted`. Phase 1 menambahkan package kontrak bersama, correlation ID, error
+publik ternormalisasi, serta
+[privacy/retention policy](docs/PRIVACY_RETENTION_POLICY.md); fase tersebut tidak
+menambah LLM, streaming, schema database, cloud resource, atau deployment. Bukti
+implementasi ada di [docs/IMPLEMENTATION_REPORT.md](docs/IMPLEMENTATION_REPORT.md).
+
+Phase 2 provider foundation tersedia tetapi tetap nonaktif: embedding v1 sekarang
+melewati provider port, sedangkan Cloudflare/mock/disabled LLM berbagi kontrak
+generate/stream/capability/error/telemetry tanpa endpoint percakapan. Matrix ada di
+[docs/PROVIDER_CAPABILITY_MATRIX.md](docs/PROVIDER_CAPABILITY_MATRIX.md) dan bukti
+ada di [docs/PHASE2_IMPLEMENTATION_REPORT.md](docs/PHASE2_IMPLEMENTATION_REPORT.md).
+
+Phase 3 menambahkan internal retrieval gateway, empat tool allowlisted, dan evidence
+ledger tervalidasi tanpa endpoint baru atau LLM call. Desain dan kontrak ada di
+[docs/RETRIEVAL_TOOL_DESIGN.md](docs/RETRIEVAL_TOOL_DESIGN.md) serta
+[docs/EVIDENCE_CONTRACT.md](docs/EVIDENCE_CONTRACT.md); bukti implementasi ada di
+[docs/PHASE3_IMPLEMENTATION_REPORT.md](docs/PHASE3_IMPLEMENTATION_REPORT.md).
+
+Phase 4 menambahkan backend conversational orchestration foundation di atas
+provider dan retrieval ports. Multi-turn query reformulation, evidence revalidation,
+citation gate, bounded execution, dan evidence-only/no-evidence fallback tersedia
+sebagai service internal; belum ada route API v2 atau perubahan frontend. Desain:
+[docs/CONVERSATIONAL_ORCHESTRATION.md](docs/CONVERSATIONAL_ORCHESTRATION.md),
+[docs/CONVERSATION_CONTEXT_DESIGN.md](docs/CONVERSATION_CONTEXT_DESIGN.md), dan
+[docs/EVIDENCE_LIFECYCLE.md](docs/EVIDENCE_LIFECYCLE.md). Laporan:
+[docs/PHASE4_IMPLEMENTATION_REPORT.md](docs/PHASE4_IMPLEMENTATION_REPORT.md).
+
+Phase 5 menambahkan API v2 internal dan SSE tervalidasi di atas orchestrator yang
+sama. Route tetap nonaktif secara default, hanya dapat diaktifkan pada
+development/test dengan access key backend, dan tidak mengirim teks/reference
+sebelum citation gate selesai. Desain:
+[docs/PHASE5_API_DESIGN.md](docs/PHASE5_API_DESIGN.md) dan
+[docs/PHASE5_STREAMING_CONTRACT.md](docs/PHASE5_STREAMING_CONTRACT.md). Laporan:
+[docs/PHASE5_IMPLEMENTATION_REPORT.md](docs/PHASE5_IMPLEMENTATION_REPORT.md).
+
 ## Kebutuhan dan menjalankan
 
 - Windows x64; Node **24.22.0 LTS** dan npm **11.x**. `.nvmrc`, `.node-version`, dan
@@ -68,7 +110,7 @@ Screenshot/report/trace regresi UI terbaru ada di `artifacts/ui-redesign/`
 (diabaikan Git); bukti historis tetap di `docs/evidence/`. Kompilasi pertama dapat lambat pada filesystem
 ini; tunggu halaman siap sebelum smoke test.
 
-Lint/typecheck/build berjalan untuk kedua workspace. `npm test` menjalankan tes
+Lint/typecheck/build berjalan untuk ketiga workspace. `npm test` menjalankan tes
 fondasi HTTP NestJS, normalisasi, validasi dan mock search, tanpa DB/token.
 Jangan menjalankan build bersamaan dengan watcher yang memakai output aplikasi
 yang sama. Build web tidak mengunduh font atau aset eksternal.

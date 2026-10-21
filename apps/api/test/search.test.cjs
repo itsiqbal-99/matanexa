@@ -79,6 +79,7 @@ test('real HTTP search validates bodies, pagination, CORS and safe errors', asyn
     'http://localhost:3000',
   );
   const body = await success.json();
+  assert.equal(success.headers.get('x-request-id'), body.meta.requestId);
   assert.equal(body.meta.modeUsed, 'mock');
   assert.equal(body.meta.hasMore, true);
   assert.equal(body.data.totalCandidates, 2);
@@ -107,6 +108,7 @@ test('real HTTP search validates bodies, pagination, CORS and safe errors', asyn
     const error = await response.json();
     assert.equal(error.error.code, 'VALIDATION_ERROR');
     assert.match(error.error.requestId, /^[\da-f-]{36}$/);
+    assert.equal(response.headers.get('x-request-id'), error.error.requestId);
     assert.equal(error.error.stack, undefined);
   }
   const malformed = await fetch(`${base}/api/v1/search`, {

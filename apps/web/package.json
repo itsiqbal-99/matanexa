@@ -11,6 +11,7 @@
     "test:smoke": "node --test tests/api-storage-smoke.cjs"
   },
   "dependencies": {
+    "@matanexa/contracts": "0.1.0",
     "lucide-react": "1.55.0",
     "next": "16.4.2",
     "react": "^19.2.0",

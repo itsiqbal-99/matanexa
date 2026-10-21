@@ -8,10 +8,10 @@ import { QueryAnalyzer } from './query-analyzer';
 import { SynonymService } from './synonym.service';
 import { RelevanceRanker } from './relevance-ranker';
 import { SearchRepository } from './search.repository';
-import { CloudflareEmbedding } from '../../providers/embedding/cloudflare-embedding';
 import { SemanticRepository } from './semantic.repository';
+import { ProviderModule } from '../../providers/provider.module';
 @Module({
-  imports: [HadithModule],
+  imports: [HadithModule, ProviderModule],
   controllers: [SearchController],
   providers: [
     SearchService,
@@ -21,8 +21,8 @@ import { SemanticRepository } from './semantic.repository';
     SynonymService,
     RelevanceRanker,
     SearchRepository,
-    CloudflareEmbedding,
     SemanticRepository,
   ],
+  exports: [SearchService],
 })
 export class SearchModule {}
